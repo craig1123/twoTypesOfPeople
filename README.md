@@ -1,4 +1,5 @@
 # Two Types of People
+Which flavor do you fancy? 
 
 ## Features:
 ### Choose between two pictures (ex. one alarm or many alarms).
