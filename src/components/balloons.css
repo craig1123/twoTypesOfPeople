@@ -1,264 +1,12 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway);
-/*------------------------------------*\
-            Balloon Colours
-        yellow:   rgb(235,255, 20);
-        blue      rgb( 39, 20,255);
-        purple:   rgb(189, 96,255);
-        red:      rgb(255, 39, 20);
-        cyan      rgb( 20,235,255);
-        pink:     rgb(255,138,187);
-        green:    rgb( 20,189, 34);
-        orange:   rgb(255,171, 53);
-\*------------------------------------*/
-
 .intro {
     position:fixed;
     top: 0; right: 0; bottom: 0; left: 0;
-    display: -webkit-flex;
-    display: -ms-flex;
     display: flex;
-    -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-justify-content: center;
-        -ms-justify-content: center;
-            justify-content: center;
-    -webkit-align-items: center;
-        -ms-align-items: center;
-            align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background: rgb(235,235,236);
 }
-
-h1 {
-    font: 1.8rem/1.6em 'Raleway', sans-serif;
-
-    font-weight: bold;
-    letter-spacing: .02em;
-    text-align: center;
-    color: rgba(51, 51, 51, 1);
-}
-
-@media all and (min-width: 30em) and (max-width: 47em) {
-    h1 {
-        font-size: 2.4rem;
-    }
-}
-@media all and (min-width: 47em) {
-    h1 {
-        font-size: 3.2rem;
-    }
-}
-@media all and (min-width: 70em) {
-    h1 {
-        font-size: 2.8rem;
-    }
-}
-@media all and (min-width: 110em) {
-    h1 {
-        font-size: 3.6em;
-    }
-}
-
-    h1 + h1 {
-    color: rgba(51, 51, 51, .8);
-    font-size: 1.6rem;
-}
-@media all and (min-width: 30em) and (max-width: 47em) {
-    h1 + h1 {
-        font-size: 2.2rem;
-    }
-}
-@media all and (min-width: 47em) {
-    h1 + h1 {
-        font-size: 3rem;
-    }
-}
-@media all and (min-width: 70em) {
-    h1 + h1 {
-        font-size: 2.8rem;
-        padding-top: 0;
-    }
-}
-@media all and (min-width: 110em) {
-    h1 + h1 {
-        font-size: 3.6em;
-    }
-}
-
-/* forced line breaks for screen sizes */
-.title-mobile { display: none; }
-
-@media all and (max-width: 70em) {
-    .title-mobile {
-        display: block;
-    }
-}
-
-.title-desktop { display: none; }
-
-@media all and (min-width: 70em) {
-    .title-desktop {
-        display: block;
-    }
-}
-
-/*------------------------------------*\
-    buttons
-\*------------------------------------*/
-
-button {
-    font-family: 'Raleway', sans-serif;
-    text-transform: uppercase;
-    border: 1px solid rgba(51,51,51,.8);
-    color: rgba(51, 51, 51, .8);
-    border-radius: 2px;
-    margin-top: 1.6rem;
-    padding: .6rem 1rem;
-    background: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    -webkit-tap-highlight-color: transparent;
-    cursor: pointer;
-}
-
-@media all and (min-width: 30em) and (max-width: 47em), (min-width: 110em) {
-    button {
-        font-size: 1.4em;
-        line-height: 1.8em;
-        padding: .5rem 1.2rem;
-    }
-}
-
-button:active,
-button:hover {
-	color: rgb(248,248,248);
-	background: rgba(51,51,51,1);
-}
-button:focus { outline: none; }
-
-
-@media all and (min-width: 47em) {
-    button {
-        font-size: 2rem;
-        line-height: 2.6rem;
-        margin-top: 2rem;
-    }
-}
-@media all and (min-width: 70em) {
-    button {
-        font-size: 1.4rem;
-        line-height: 1.8rem;
-    }
-}
-@media all and (min-width: 110em) {
-    button {
-        font-size: 1.6rem;
-        line-height: 2rem;
-    }
-}
-
-
-/* ---- height --- */
-
-@media only screen
-and (max-height : 500px) {
-  .title-mobile { display: none; }
-    .title-desktop { display: block; }
-    h1,
-    h1 + h1 {
-        font-size: 1.6rem;
-        line-height: 1.6em;
-    }
-    button {
-        font-size: 1.2rem;
-        line-height: 1.6rem;
-        padding: .6rem 1rem;
-    }
-}
-
-@media only screen
-and (min-device-width : 469px)
-and (max-device-width : 1000px)
-and (orientation : landscape) {
-    .title-mobile { display: none; }
-    .title-desktop { display: block; }
-    h1,
-    h1 + h1 {
-        font-size: 2.2rem;
-        line-height: 1.6em;
-    }
-    button {
-        font-size: 1.2rem;
-        line-height: 1.6rem;
-        padding: .6rem 1rem;
-    }
-}
-
-/*------------------------------------*\
-    OUT NOW button - colour changes
-\*------------------------------------*/
-
-.button-yellow {
-    color: rgba(51,51,51,.8);
-    border-color: rgba(51,51,51,.8);
-}
-.button-yellow:hover,
-.button-yellow:active {
-    color: rgb(235,255,20);
-    background: rgb(51,51,51);
-}
-
-.button-blue,
-.button-purple,
-.button-red,
-.button-cyan,
-.button-pink,
-.button-green,
-.button-orange {
-    color: rgb(255,255,255);
-    border-color: rgb(255,255,255);
-}
-
-.button-blue:hover,
-.button-blue:active   { color: rgb( 39, 20,255); }
-
-.button-purple:hover,
-.button-purple:active { color: rgb(189, 96,255); }
-
-.button-red:hover,
-.button-red:active    { color: rgb(255, 39, 20); }
-
-.button-cyan:hover,
-.button-cyan:active { color: rgb( 20,235,255); }
-
-.button-pink:hover,
-.button-pink:active   { color: rgb(255,138,187); }
-
-.button-green:hover,
-.button-green:active  { color: rgb( 20,189, 34); }
-
-.button-orange:hover,
-.button-orange:active { color: rgb(255,171, 53); }
-
-.button-blue:hover,
-.button-blue:active,
-.button-purple:hover,
-.button-purple:active,
-.button-red:hover,
-.button-red:active,
-.button-cyan:hover,
-.button-cyan:active,
-.button-pink:hover,
-.button-pink:active,
-.button-green:hover,
-.button-green:active,
-.button-orange:hover,
-.button-orange:active { background: rgb(255,255,255); }
-
-
-/*------------------------------------*\
-    Balloons
-\*------------------------------------*/
-
 .balloon {
     position:absolute;
     bottom: -5%;
@@ -269,7 +17,6 @@ and (orientation : landscape) {
     cursor: crosshair;
     z-index: 2;
 }
-
 /* crap attempt at balloon neck */
 .balloon:after {
     position: relative;
@@ -282,19 +29,16 @@ and (orientation : landscape) {
     width: .2rem;
     border-radius: 100%;
 }
-
 .balloon:hover {
     font-size: 2.1em;
     opacity: .7;
 }
-.balloon:active { cursor: crosshair; }
-
-
+.balloon:active { cursor: pointer; }
 
 /*------------------------------------*\
     Starting Ballons - 1 iteration
 \*------------------------------------*/
-.balloon:nth-child(1) {
+.balloon:nth-child(0) {
     background: rgb(235,255,20);
     bottom: 55%;
     left: 50%;
@@ -615,10 +359,4 @@ and (orientation : landscape) {
     left: 30%;
     -webkit-animation: balloon 13s 10.5s infinite ease-in;
             animation: balloon 13s 10.5s infinite ease-in;
-}
-
-.fade {
-    opacity: 0;
-    -webkit-transition: opacity .5s;
-            transition: opacity .5s;
 }
