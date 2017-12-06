@@ -3,10 +3,10 @@ import keys from "./../keys";
 
 const config = {
     apiKey: keys.apiKey,
-    authDomain: "two-types-of-people.firebaseapp.com",
-    databaseURL: "https://two-types-of-people.firebaseio.com",
-    projectId: "two-types-of-people",
-    storageBucket: "",
+    authDomain: keys.authDomain,
+    databaseURL: keys.databaseURL,
+    projectId: keys.projectId,
+    storageBucket: keys.storageBucket,
     messagingSenderId: keys.messagingSenderId
 };
 
