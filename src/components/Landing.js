@@ -1,28 +1,28 @@
 import React, { Component } from 'react';
-import firebase, { auth, googleProvider } from './../firebase.js';
+import firebase from './../firebase.js';
 
 export default class Landing extends Component {
-    state = { items: [] }
-
-    removeItem(itemId) {
-        const itemRef = firebase.database().ref(`/items/${itemId}`);
-        itemRef.remove();
-    }
+    state = { items: [] };
 
     handleSubmit = () => {
-        const itemsRef = firebase.database().ref('items');
-        const item = {
-            title: this.state.currentItem,
-            user: this.state.username
-        }
-        itemsRef.push(item);
-    }
+      const itemsRef = firebase.database().ref('items');
+      const item = {
+        title: this.state.currentItem,
+        user: this.state.username,
+      };
+      itemsRef.push(item);
+    };
 
     render() {
-        return (
-            <div>
-                landing
-            </div>
-        );
+      return (
+        <div>
+          <p className="">
+            There are many different types of people and personalities
+            in this world. However, it's sometimes easiest to divide us
+            into two specific groups. Find out your personality type as
+            you take this simple and fun quiz.
+          </p>
+        </div>
+      );
     }
 }
