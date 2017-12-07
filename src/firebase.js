@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import keys from './../keys';
+import keys from './keys';
 
 const config = {
   apiKey: keys.apiKey,
