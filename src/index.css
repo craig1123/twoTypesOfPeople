@@ -16,7 +16,7 @@ button:hover {
 	background: rgba(51,51,51,1);
 }
 button:focus { outline: none; }
-@media screen and (min-width: 120em) {
+@media (min-width: 120em) {
   button {
     font-size: 1.6rem;
     line-height: 2rem;
@@ -27,6 +27,8 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px 25px;
+  position: relative;
+  z-index: 5;
 }
 .landing-wrapper {
   padding: 10%;
@@ -42,14 +44,43 @@ header {
   border-radius: 50%;
 }
 .quiz-wrapper {
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translate(-50%);
+  -ms-transform: translate(-50%);
+  transform: translate(-50%);
+}
+.item-wrapper {
+  width: 100%;
   align-items: center;
+  display: flex;
+  justify-content: center;
+  pointer-events: auto;
+  position: relative;
+  overflow: hidden;
 }
 .item {
   cursor: pointer;
-  margin: 10px;
 }
 .item img:hover {
   box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.4);
+}
+.vertical-line {
+  border-left: 1px solid #444
+}
+
+@media screen and (max-width: 785px) {
+  .quiz-wrapper {
+    display: block;
+    position: relative;
+  }
+  .vertical-line {
+    border-top: 1px solid #444;
+    border-left: none;
+  }
 }

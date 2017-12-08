@@ -33,7 +33,7 @@ class App extends Component {
 
     render() {
       return (
-        <div>
+        <div className="wrapper">
           <Header user={this.state.user} logout={this.logout} login={this.login} />
           <Switch>
             <Route exact path="/quiz" component={Questions} />

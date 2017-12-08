@@ -14,7 +14,7 @@ export default class Landing extends Component {
 
   render() {
     return (
-      <section className="landing-wrapper">
+      <section className="landing-wrapper wrapper">
         <p className="">
           There are many different types of people and personalities
           in this world. However, it's sometimes easiest to divide us

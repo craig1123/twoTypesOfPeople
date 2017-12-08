@@ -1,4 +1,402 @@
 export default [
-  ['alarm1.jpg', 'alarm2.jpg'],
-  ['birthday1.jpg', 'birthday2.jpg'],
+  [
+    {
+      image: 'alarm1.jpg',
+      points: 1,
+    },
+    {
+      image: 'alarm2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'alarm1.jpg',
+      points: 1,
+    },
+    {
+      image: 'alarm2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'alarm1.jpg',
+      points: 1,
+    },
+    {
+      image: 'alarm2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'alarm1.jpg',
+      points: 1,
+    },
+    {
+      image: 'alarm2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'alarm1.jpg',
+      points: 1,
+    },
+    {
+      image: 'alarm2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'alarm1.jpg',
+      points: 1,
+    },
+    {
+      image: 'alarm2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'alarm1.jpg',
+      points: 1,
+    },
+    {
+      image: 'alarm2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'alarm1.jpg',
+      points: 1,
+    },
+    {
+      image: 'alarm2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'alarm1.jpg',
+      points: 1,
+    },
+    {
+      image: 'alarm2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'alarm1.jpg',
+      points: 1,
+    },
+    {
+      image: 'alarm2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'alarm1.jpg',
+      points: 1,
+    },
+    {
+      image: 'alarm2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'alarm1.jpg',
+      points: 1,
+    },
+    {
+      image: 'alarm2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'alarm1.jpg',
+      points: 1,
+    },
+    {
+      image: 'alarm2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'alarm1.jpg',
+      points: 1,
+    },
+    {
+      image: 'alarm2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'alarm1.jpg',
+      points: 1,
+    },
+    {
+      image: 'alarm2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'alarm1.jpg',
+      points: 1,
+    },
+    {
+      image: 'alarm2.jpg',
+      points: 2,
+    },
+  ],
+  [
+    {
+      image: 'birthday1.jpg',
+      points: 1,
+    },
+    {
+      image: 'birthday2.jpg',
+      points: 2,
+    },
+  ],
 ];

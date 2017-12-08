@@ -11,12 +11,17 @@
     <title>There are two types of people - fun psychology personality test</title>
     <style>
     html,body,div,a,img,header{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}
-    body {
+    html, body {
         margin: 0;
         padding: 0;
         line-height:1;
         font-family: sans-serif;
         color: #525252;
+        position: relative;
+        height: 100%;
+    }
+    .wrapper {
+      height: 100%;
     }
     a {
       text-decoration: none;
@@ -73,6 +78,6 @@
       <h2>Please enable javascript to find out which type of person you are</h2>
     </noscript>
     <div class="yinyang" id="yinyang"></div>
-    <div id="root"></div>
+    <div class="wrapper" id="root"></div>
   </body>
 </html>
