@@ -12,12 +12,6 @@ module.exports = {
       experimentalObjectRestSpread: true
     },
   },
-  "globals": {
-      "s": true,
-      "os": true,
-      "google": true,
-      "React": true
-  },
   rules: {
     'eol-last': 'off',
     "no-console": 0,
@@ -28,6 +22,7 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 'off',
     'global-require': 'off',
     'react/require-default-props': 'off',
+    "react/prop-types": 'off',
     'react/no-unescaped-entities': 'off',
     'react/no-array-index-key': 'off',
     'react/jsx-filename-extension': [0],

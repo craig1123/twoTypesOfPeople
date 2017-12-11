@@ -2,41 +2,16 @@ import React, { Component } from 'react';
 import Results from './Results';
 import options from './../options';
 import colors from './../colors';
+import getContrast from './../utils/getContrast';
 import firebase from './../firebase.js';
-
-const repeatArray = (arr, count) => {
-  const ln = arr.length;
-  const b = [];
-  for (let i = 0; i < count; i += 1) {
-    b.push(arr[i % ln]);
-  }
-  return b;
-};
-
-const getContrast = (hexcolor) => {
-  const r = parseInt(hexcolor.substr(0, 2), 16);
-  const g = parseInt(hexcolor.substr(2, 2), 16);
-  const b = parseInt(hexcolor.substr(4, 2), 16);
-  const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
-  return (yiq >= 128) ? '#525252' : '#ededed';
-};
+import repeatArray from './../utils/repeatArray';
 
 export default class Questions extends Component {
-  state = { index: 0, choices: 0 }
+  state = { choices: 0 }
 
   componentDidMount() {
     window.addEventListener('keydown', this.useArrows);
-  }
-
-  componentDidUpdate() {
-    const title = document.getElementById('title');
-    const buttons = document.getElementsByClassName('log-button');
-    console.log(this.color.option1);
-    title.style.color = getContrast(this.color.option1);
-    for (let i = 0; i < buttons.length; i += 1) {
-      buttons[i].style.color = getContrast(this.color.option2);
-      buttons[i].style.border = `1px solid ${getContrast(this.color.option2)}`;
-    }
+    this.props.handleStartQuiz();
   }
 
   componentWillUnmount() {
@@ -44,7 +19,7 @@ export default class Questions extends Component {
   }
 
   useArrows = (e) => {
-    const item = options[this.state.index];
+    const item = options[this.props.optionIndex];
     if (e.key === 'ArrowLeft') {
       this.clickItem('one', item[0])();
     } else if (e.key === 'ArrowRight') {
@@ -53,18 +28,14 @@ export default class Questions extends Component {
   }
 
   clickItem = (ref, opt) => () => {
-    // const el = this[ref];
+    const el = this[ref];
     // el.classList.add('big');
     this.recordItem(opt);
-    // setTimeout(() => {
-    // document.body.style.background = next;
-    // el.classList.remove('big');
-    this.setState(prev => ({ index: prev.index + 1 }));
-    // }, 500);
+    this.props.updateOptionIndex(el);
   }
 
   recordItem = (option) => {
-    const itemRef = firebase.database().ref(`choices/${this.state.index}`);
+    const itemRef = firebase.database().ref(`choices/${this.state.optionIndex}`);
     itemRef.transaction((opts) => {
       const currentItem = opts || { option1: 0, option2: 0 };
       return {
@@ -76,16 +47,18 @@ export default class Questions extends Component {
   }
 
   render() {
-    const { index, choices } = this.state;
-    const item = options[index];
+    const { choices } = this.state;
+    const { optionIndex } = this.props;
+    const item = options[optionIndex];
     const theColors = repeatArray(colors, options.length);
-    this.color = theColors[index];
-    if (index > options.length - 1) {
+    const color = theColors[optionIndex];
+    const color2 = getContrast(color.option2) === '#ededed' ? ' white' : '';
+    if (optionIndex > options.length - 1) {
       return <Results choices={choices} />;
     }
     return (
       <section className="quiz-wrapper">
-        <div className="item-wrapper" style={{ background: this.color.option1 }}>
+        <div className="item-wrapper" style={{ background: color.option1 }}>
           <div
             role="presentation"
             ref={(ref) => { this.one = ref; }}
@@ -96,7 +69,7 @@ export default class Questions extends Component {
           </div>
         </div>
         <div className="vertical-line" />
-        <div className="item-wrapper" style={{ background: this.color.option2 }}>
+        <div className="item-wrapper" style={{ background: color.option2 }}>
           <div
             role="presentation"
             ref={(ref) => { this.two = ref; }}
@@ -105,6 +78,9 @@ export default class Questions extends Component {
           >
             <img src={`${process.env.PUBLIC_URL}/img/${item[1].image}`} alt="item 2" width="100%" />
           </div>
+          <button className={`my-button see-stats${color2}`}>
+            See Stats
+          </button>
         </div>
       </section>
     );

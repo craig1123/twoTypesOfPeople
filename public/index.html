@@ -12,13 +12,13 @@
     <style>
     html,body,div,a,img,header{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}
     html, body {
-        margin: 0;
-        padding: 0;
-        line-height:1;
-        font-family: sans-serif;
-        color: #525252;
-        position: relative;
-        height: 100%;
+      margin: 0;
+      padding: 0;
+      line-height:1;
+      font-family: sans-serif;
+      color: #525252;
+      position: relative;
+      height: 100%;
     }
     .wrapper {
       height: 100%;
@@ -28,47 +28,47 @@
       color: inherit;
     }
     .yinyang {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        position: fixed;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        background: linear-gradient(to bottom,black 0%,black 50%,white 50%,white 100%);
-        box-shadow: 6px 6px 27px 4px rgba(0,0,0,0.16);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        animation: 2s rotate linear infinite;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(to bottom,black 0%,black 50%,white 50%,white 100%);
+      box-shadow: 6px 6px 27px 4px rgba(0,0,0,0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: 2s rotate linear infinite;
     }
     .yinyang:after, .yinyang:before {
-        content: '';
-        display: block;
-        border-radius: 50%;
+      content: '';
+      display: block;
+      border-radius: 50%;
     }
     .yinyang:after {
-        width: 75%;
-        height: 75%;
-        background: radial-gradient(ellipse at center, black 0%, black 25%, white 25%, white 100%);
-        animation: inner-size 3s ease-in-out infinite;
-        animation-delay: -1.5s;
+      width: 75%;
+      height: 75%;
+      background: radial-gradient(ellipse at center, black 0%, black 25%, white 25%, white 100%);
+      animation: inner-size 3s ease-in-out infinite;
+      animation-delay: -1.5s;
     }
     .yinyang:before {
-        width: 25%;
-        height: 25%;
-        background: radial-gradient(ellipse at center, white 0%, white 25%, black 25%, black 100%);
-        animation: inner-size 3s ease-in-out infinite;
+      width: 25%;
+      height: 25%;
+      background: radial-gradient(ellipse at center, white 0%, white 25%, black 25%, black 100%);
+      animation: inner-size 3s ease-in-out infinite;
     }
     @keyframes inner-size {
-        0%, 100% {
-            width: 75%;
-            height: 75%;
-        }
-        50% {
-            width: 25%;
-            height: 25%;
-        }
+      0%, 100% {
+          width: 75%;
+          height: 75%;
+      }
+      50% {
+          width: 25%;
+          height: 25%;
+      }
     }
     @keyframes rotate { to {transform: rotate(-360deg)} }
     </style>

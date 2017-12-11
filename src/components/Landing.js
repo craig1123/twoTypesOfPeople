@@ -3,6 +3,34 @@ import Link from 'react-router-dom/Link';
 import firebase from './../firebase.js';
 
 export default class Landing extends Component {
+  componentDidMount() {
+    const docStyle = this.three.style;
+    const aElem = document.getElementById('start-quiz');
+    const boundingClientRect = aElem.getBoundingClientRect();
+
+    aElem.onmousemove = (e) => {
+      const x = e.clientX - boundingClientRect.left;
+      const y = e.clientY - boundingClientRect.top;
+      const xc = boundingClientRect.width / 2;
+      const yc = boundingClientRect.height / 2;
+      const dx = x - xc;
+      const dy = y - yc;
+      docStyle.setProperty('--rx', `${dy / -1}deg`);
+      docStyle.setProperty('--ry', `${dx / 10}deg`);
+    };
+    aElem.onmouseleave = () => {
+      docStyle.setProperty('--ty', '0');
+      docStyle.setProperty('--rx', '0');
+      docStyle.setProperty('--ry', '0');
+    };
+    aElem.onmousedown = () => {
+      docStyle.setProperty('--tz', '-25px');
+    };
+    this.three.onmouseup = () => {
+      docStyle.setProperty('--tz', '-12px');
+    };
+  }
+
   handleSubmit = () => {
     const itemsRef = firebase.database().ref('items');
     const item = {
@@ -21,9 +49,9 @@ export default class Landing extends Component {
           into two specific groups. Find out your personality type as
           you take this simple and fun quiz.
         </p>
-        <Link to="/quiz">
-          <button>Take the Quiz</button>
-        </Link>
+        <div className="three-d" ref={(ref) => { this.three = ref; }}>
+          <Link to="/quiz" id="start-quiz" data-title="Take Quiz" />
+        </div>
       </section>
     );
   }

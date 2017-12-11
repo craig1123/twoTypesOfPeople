@@ -1,28 +1,112 @@
-button {
-  text-transform: uppercase;
-  border: 1px solid rgba(51,51,51,.8);
-  color: rgba(51, 51, 51, .8);
-  border-radius: 2px;
-  padding: .6rem 1rem;
-  font-size: 1rem;
-  background: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-tap-highlight-color: transparent;
+.my-button {
+  color:#585858;
+  background:transparent;
+  border-width:2px;
+  border-style: solid;
+  border-color: #585858;
+  position:relative;
+  margin:1em;
+  display:inline-block;
+  padding:.75em 1.1em .75em 1.5em;
+  transition:all 0.3s ease-in-out;
+  text-align:center;
+  font-weight:bold;
   cursor: pointer;
+  font-size: 18px
 }
-button:active,
-button:hover {
-	color: rgb(248,248,248);
-	background: rgba(51,51,51,1);
+.my-button:before, .my-button:after {
+  content:'';
+  display:block;
+  position:absolute;
+  border-color:#585858;
+  box-sizing:border-box;
+  border-style:solid;
+  width:1em;
+  height:1em;
+  transition:all 0.3s ease-in-out
 }
-button:focus { outline: none; }
-@media (min-width: 120em) {
-  button {
-    font-size: 1.6rem;
-    line-height: 2rem;
-  }
+.my-button:before {
+  top:-6px;
+  left:-6px;
+  border-width:2px 0 0 2px;
+  z-index:5;
 }
+.my-button:after {
+  bottom:-6px;
+  right:-6px;
+  border-width:0 2px 2px 0;
+}
+.my-button:hover:before, .my-button:hover:after {
+  width:calc(100% + 12px);
+  height:calc(100% + 12px);
+  border-color:#fff;
+}
+.see-stats.my-button {
+  color:#585858;
+  border-color:#585858;
+  position: absolute;
+  right: 0;
+  bottom: 10px;
+}
+.see-stats.my-button:before, .see-stats.my-button:after  {
+  border-color:#585858;
+}
+.see-stats.my-button:hover:before, .see-stats.my-button:hover:after {
+  width:calc(100% + 12px);
+  height:calc(100% + 12px);
+  border-color:#585858;
+  transform:rotateY(180deg);
+}
+.see-stats.my-button:hover {
+  color:#585858;
+  background-color:transparent;
+  border-color:#585858;
+}
+.next.my-button {
+  color:#585858;
+  border-color:#585858;
+  position: absolute;
+  top: 10px;
+  right: 0;
+}
+.next.my-button:before, .next.my-button:after  {
+  border-color:#585858
+}
+.next.my-button:hover:before, .next.my-button:hover:after {
+  border-color:#585858;
+}
+.next.my-button:hover {
+  color:#fff;
+  background-color:#585858;
+  border-color:#585858;
+}
+.next.my-button .hovering {
+  opacity: 0;
+}
+.next.my-button .hovering {
+  transition:all 0.3s ease-in-out;
+}
+.next.my-button:hover .hovering {
+  opacity: 1;
+}
+.my-button.white {
+  color:#ededed;
+  border-color: #ededed;
+}
+.my-button.white:before, .my-button.white:after {
+  border-color:#ededed;
+}
+.my-button.white:hover:before, .my-button.white:hover:after {
+  border-color:#ededed;
+}
+.my-button.white:hover {
+  color:#ededed;
+  background-color:transparent;
+  border-color:#ededed;
+}
+
 header {
+  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,14 +118,57 @@ header {
   padding: 10%;
   text-align: center;
 }
-.user-profile {
-  display: flex;
-  align-items: center;
+#start-quiz {
+	position: relative;
+	display: inline-block;
+	padding: 1.2em 2em;
+	text-decoration: none;
+	text-align: center;
+	cursor: pointer;
+	user-select: none;
+	color: white;
 }
-.user-profile img {
-  padding: 5px 15px;
-  width: 75px;
-  border-radius: 50%;
+#start-quiz::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: linear-gradient(135deg, #525252, #a777e3);
+	border-radius: 4px;
+	transition: box-shadow .5s ease, transform .2s ease;
+	will-change: transform;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+	transform:
+		translateY(var(--ty, 0))
+		rotateX(var(--rx, 0))
+		rotateY(var(--ry, 0))
+		translateZ(var(--tz, -12px));
+}
+#start-quiz:hover::before {
+	box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
+}
+#start-quiz::after {
+	position: relative;
+	display: inline-block;
+	content: attr(data-title);
+	transition: transform .2s ease;
+	font-weight: bold;
+	letter-spacing: .01em;
+	will-change: transform;
+	transform:
+		translateY(var(--ty, 0))
+		rotateX(var(--rx, 0))
+		rotateY(var(--ry, 0));
+}
+.three-d {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	transform-style: preserve-3d;
+	transform: perspective(800px);
 }
 .quiz-wrapper {
   height: 100%;
@@ -68,19 +195,67 @@ header {
   cursor: pointer;
 }
 .item img:hover {
-  box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.4);
+  box-shadow: 0px 0px 10px 4px rgba(0,0,0,0.4);
 }
 .vertical-line {
-  border-left: 1px solid #444
+  border-left: 1px solid #585858
 }
 
 @media screen and (max-width: 785px) {
+  header {
+    background: #f9f9f9;
+    border: 1px solid rgba(88,88,88,.8) !important;
+    color: rgba(88, 88, 88, .8) !important;
+  }
+  header h1 {
+    color: #585858 !important;
+  }
+  .my-button.next {
+    color:#585858 !important;
+    border-color: #585858 !important;
+  }
+  .my-button.next:before, .my-button.next:after {
+    border-color:#585858 !important;
+  }
+  .my-button.next:hover:before, .my-button.next:hover:after {
+    border-color:#585858 !important;
+  }
+  .my-button.next:hover {
+    color:#585858 !important;
+    background-color:transparent;
+    border-color:#585858 !important;
+  }
   .quiz-wrapper {
     display: block;
     position: relative;
   }
   .vertical-line {
-    border-top: 1px solid #444;
+    border-top: 1px solid #585858;
     border-left: none;
+  }
+  .item-wrapper {
+    padding: 25px;
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 515px) {
+  header h1 {
+    font-size: 1.5em;
+  }
+  .my-button {
+    font-size: 12px;
+  }
+  .item-wrapper {
+    display: block;
+  }
+  .next.my-button {
+    position: relative;
+    top: 0;
+  }
+  .see-stats.my-button {
+    position: relative;
+    float: right;
+    bottom: 0;
   }
 }
