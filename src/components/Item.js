@@ -1,18 +1,18 @@
 import React from 'react';
 
 const Item = ({
-  color, item, selectItem, getRef, option, render,
+  color, item, selectItem, getRef, option, render, number,
 }) => (
   <div className="item-wrapper" style={{ background: option }}>
     <div
       role="presentation"
       ref={getRef}
       className="item"
-      onClick={selectItem('one', item.points)}
+      onClick={selectItem(number, item.points)}
     >
       <img
         src={`${process.env.PUBLIC_URL}/img/${item.image}`}
-        alt="item 1"
+        alt={`item ${number}`}
         width="100%"
         className={color}
       />

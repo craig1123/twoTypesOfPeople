@@ -34,7 +34,18 @@ export default class Questions extends Component {
   }
 
   selectItem = (ref, opt) => () => {
-    this.setState({ opt, sideEl: this[ref] });
+    const sideEl = this[ref];
+    let option;
+    if (ref === 'one') {
+      option = this.color.option1;
+      this.two.children[0].style.boxShadow = '';
+    } else {
+      option = this.color.option2;
+      this.one.children[0].style.boxShadow = '';
+    }
+    const color = getContrast(option) === '#ededed' ? '255,255,255' : '0,0,0';
+    sideEl.children[0].style.boxShadow = `0px 0px 10px 4px rgba(${color},0.9)`;
+    this.setState({ opt, sideEl });
   }
 
   handleNext = () => {
@@ -42,6 +53,8 @@ export default class Questions extends Component {
     // sideEl.classList.add('big');
     this.recordItem(opt);
     this.updateOptionIndex(sideEl);
+    this.two.children[0].style.boxShadow = '';
+    this.one.children[0].style.boxShadow = '';
   }
 
   recordItem = (option) => {
@@ -71,9 +84,9 @@ export default class Questions extends Component {
     }
     const item = options[optionIndex];
     const theColors = repeatArray(colors, options.length);
-    const color = theColors[optionIndex];
-    const color1 = getContrast(color.option1);
-    const color2 = getContrast(color.option2) === '#ededed' ? ' white' : '';
+    this.color = theColors[optionIndex];
+    const color1 = getContrast(this.color.option1);
+    const color2 = getContrast(this.color.option2) === '#ededed' ? ' white' : '';
     return (
       <React.Fragment>
         <header>
@@ -92,19 +105,21 @@ export default class Questions extends Component {
         </header>
         <section className="quiz-wrapper">
           <Item
-            option={color.option1}
+            option={this.color.option1}
             getRef={this.getRefOne}
             item={item[0]}
             color={color1 === '#ededed' ? ' white' : ''}
             selectItem={this.selectItem}
+            number="one"
           />
           <div className="vertical-line" />
           <Item
-            option={color.option2}
+            option={this.color.option2}
             getRef={this.getRefTwo}
             item={item[1]}
             color={color2}
             selectItem={this.selectItem}
+            number="two"
             render={(
               <button className={`my-button see-stats${color2}`}>
                 See Stats
