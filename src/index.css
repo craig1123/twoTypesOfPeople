@@ -6,6 +6,7 @@
   border-color: #585858;
   position:relative;
   margin:1em;
+  min-width: 80px;
   display:inline-block;
   padding:.75em 1.1em .75em 1.5em;
   transition:all 0.3s ease-in-out;
@@ -89,6 +90,11 @@
 .next.my-button:hover .hovering {
   opacity: 1;
 }
+.next.my-button.blocked {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
 .my-button.white {
   color:#ededed;
   border-color: #ededed;
@@ -115,7 +121,7 @@ header {
   z-index: 5;
 }
 .landing-wrapper {
-  padding: 10%;
+  padding: 5% 10%;
   text-align: center;
 }
 #start-quiz {
@@ -135,7 +141,7 @@ header {
 	left: 0;
 	bottom: 0;
 	right: 0;
-	background: linear-gradient(135deg, #525252, #a777e3);
+	background: linear-gradient(135deg, #525252, #969696);
 	border-radius: 4px;
 	transition: box-shadow .5s ease, transform .2s ease;
 	will-change: transform;
@@ -148,6 +154,7 @@ header {
 }
 #start-quiz:hover::before {
 	box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
+  /*background: linear-gradient(135deg, #000b70, #000aff);*/
 }
 #start-quiz::after {
 	position: relative;
@@ -166,7 +173,7 @@ header {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 100vh;
+	height: 25vh;
 	transform-style: preserve-3d;
 	transform: perspective(800px);
 }
@@ -197,13 +204,16 @@ header {
 .item img:hover {
   box-shadow: 0px 0px 10px 4px rgba(0,0,0,0.4);
 }
+.item img.white:hover {
+  box-shadow: 0px 0px 10px 4px rgba(255,255,255,0.8);
+}
 .vertical-line {
   border-left: 1px solid #585858
 }
 
 @media screen and (max-width: 785px) {
   header {
-    background: #f9f9f9;
+    background: #ededed;
     border: 1px solid rgba(88,88,88,.8) !important;
     color: rgba(88, 88, 88, .8) !important;
   }

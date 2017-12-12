@@ -1,37 +1,47 @@
 import React, { Component } from 'react';
+import Link from 'react-router-dom/Link';
 import Results from './Results';
 import options from './../options';
 import colors from './../colors';
 import getContrast from './../utils/getContrast';
 import firebase from './../firebase.js';
 import repeatArray from './../utils/repeatArray';
+import Item from './Item';
 
 export default class Questions extends Component {
-  state = { choices: 0 }
+  state = {
+    choices: 0, optionIndex: 0, opt: '', sideEl: null,
+  }
 
   componentDidMount() {
     window.addEventListener('keydown', this.useArrows);
-    this.props.handleStartQuiz();
   }
 
   componentWillUnmount() {
     window.removeEventListener('keydown', this.useArrows);
   }
 
+  getRefOne = (ref) => { this.one = ref; }
+  getRefTwo = (ref) => { this.two = ref; }
+
   useArrows = (e) => {
-    const item = options[this.props.optionIndex];
+    const item = options[this.state.optionIndex];
     if (e.key === 'ArrowLeft') {
-      this.clickItem('one', item[0])();
+      this.selectItem('one', item[0])();
     } else if (e.key === 'ArrowRight') {
-      this.clickItem('two', item[1])();
+      this.selectItem('two', item[1])();
     }
   }
 
-  clickItem = (ref, opt) => () => {
-    const el = this[ref];
-    // el.classList.add('big');
+  selectItem = (ref, opt) => () => {
+    this.setState({ opt, sideEl: this[ref] });
+  }
+
+  handleNext = () => {
+    const { opt, sideEl } = this.state;
+    // sideEl.classList.add('big');
     this.recordItem(opt);
-    this.props.updateOptionIndex(el);
+    this.updateOptionIndex(sideEl);
   }
 
   recordItem = (option) => {
@@ -46,43 +56,63 @@ export default class Questions extends Component {
     this.setState(prev => ({ choices: prev.choices + option }));
   }
 
+  updateOptionIndex = () => {
+    // setTimeout(() => {
+    // document.body.style.background = next;
+    // el.classList.remove('big');
+    this.setState(prev => ({ optionIndex: prev.optionIndex + 1, sideEl: null, opt: '' }));
+    // }, 500);
+  }
+
   render() {
-    const { choices } = this.state;
-    const { optionIndex } = this.props;
-    const item = options[optionIndex];
-    const theColors = repeatArray(colors, options.length);
-    const color = theColors[optionIndex];
-    const color2 = getContrast(color.option2) === '#ededed' ? ' white' : '';
+    const { choices, optionIndex, sideEl } = this.state;
     if (optionIndex > options.length - 1) {
       return <Results choices={choices} />;
     }
+    const item = options[optionIndex];
+    const theColors = repeatArray(colors, options.length);
+    const color = theColors[optionIndex];
+    const color1 = getContrast(color.option1);
+    const color2 = getContrast(color.option2) === '#ededed' ? ' white' : '';
     return (
-      <section className="quiz-wrapper">
-        <div className="item-wrapper" style={{ background: color.option1 }}>
-          <div
-            role="presentation"
-            ref={(ref) => { this.one = ref; }}
-            className="item"
-            onClick={this.clickItem('one', item[0].points)}
+      <React.Fragment>
+        <header>
+          <Link to="/">
+            <h1 style={{ color: color1 }}>
+              Two Types of People
+            </h1>
+          </Link>
+          <button
+            className={`my-button next${color2}${sideEl ? '' : ' blocked'}`}
+            onClick={this.handleNext}
           >
-            <img src={`${process.env.PUBLIC_URL}/img/${item[0].image}`} alt="item 1" width="100%" />
-          </div>
-        </div>
-        <div className="vertical-line" />
-        <div className="item-wrapper" style={{ background: color.option2 }}>
-          <div
-            role="presentation"
-            ref={(ref) => { this.two = ref; }}
-            className="item"
-            onClick={this.clickItem('two', item[0].points)}
-          >
-            <img src={`${process.env.PUBLIC_URL}/img/${item[1].image}`} alt="item 2" width="100%" />
-          </div>
-          <button className={`my-button see-stats${color2}`}>
-            See Stats
+            <span>Next </span>
+            <span className="hovering">&rarr;</span>
           </button>
-        </div>
-      </section>
+        </header>
+        <section className="quiz-wrapper">
+          <Item
+            option={color.option1}
+            getRef={this.getRefOne}
+            item={item[0]}
+            color={color1 === '#ededed' ? ' white' : ''}
+            selectItem={this.selectItem}
+          />
+          <div className="vertical-line" />
+          <Item
+            option={color.option2}
+            getRef={this.getRefTwo}
+            item={item[1]}
+            color={color2}
+            selectItem={this.selectItem}
+            render={(
+              <button className={`my-button see-stats${color2}`}>
+                See Stats
+              </button>
+            )}
+          />
+        </section>
+      </React.Fragment>
     );
   }
 }
