@@ -12,7 +12,7 @@ const Item = ({
     >
       <img
         src={`${process.env.PUBLIC_URL}/img/${item.image}`}
-        alt={`item ${number}`}
+        alt={item.alt}
         width="100%"
         className={color}
       />

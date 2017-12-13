@@ -13,10 +13,10 @@ export default class Landing extends Component {
       const y = e.clientY - boundingClientRect.top;
       const xc = boundingClientRect.width / 2;
       const yc = boundingClientRect.height / 2;
-      const dx = x - xc;
-      const dy = y - yc;
-      docStyle.setProperty('--rx', `${dy * -1.5}deg`);
-      docStyle.setProperty('--ry', `${dx / 2}deg`);
+      const dx = (x - xc) / 2;
+      const dy = (y - yc) * -1.5;
+      docStyle.setProperty('--rx', `${dy}deg`);
+      docStyle.setProperty('--ry', `${dx}deg`);
     };
     aElem.onmouseleave = () => {
       docStyle.setProperty('--ty', '0');
@@ -42,10 +42,8 @@ export default class Landing extends Component {
 
   render() {
     return (
-      <section className="landing-wrapper wrapper">
-        <h1>
-          Two Types of People
-        </h1>
+      <section className="landing-wrapper">
+        <h1>Two Types of People</h1>
         <p className="">
           There are many different types of people and personalities
           in this world. However, it's sometimes easiest to divide us

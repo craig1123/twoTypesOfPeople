@@ -7,7 +7,6 @@ const yellow = '#ffd459';
 const purple = '#794bee';
 const salmon = '#ffafa6';
 const pink = '#dfcdbd';
-const lightPurple = '#ceb9fa';
 const lightBlue = '#b3d3e8';
 const black = '#000000';
 const mustard = '#ffca9e';
@@ -33,10 +32,6 @@ export default [
   {
     option1: salmon,
     option2: blue,
-  },
-  {
-    option1: red,
-    option2: lightPurple,
   },
   {
     option1: orange,

@@ -15,6 +15,7 @@ module.exports = {
   rules: {
     'eol-last': 'off',
     "no-console": 0,
+    "max-len": 1,
     'import/no-extraneous-dependencies': 'off',
     'import/newline-after-import': 'off',
     'import/extensions': 0,
