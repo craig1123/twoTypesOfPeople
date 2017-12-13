@@ -14,11 +14,6 @@ export default class Slice extends Component {
     this.animate();
   }
 
-  componentWillReceiveProps() {
-    this.setState({ path: '' });
-    this.animate();
-  }
-
   animate = () => {
     this.draw(0);
   }

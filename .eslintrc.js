@@ -21,6 +21,7 @@ module.exports = {
     'import/extensions': 0,
     'import/prefer-default-export': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/anchor-is-valid': 'off',
     'global-require': 'off',
     'react/require-default-props': 'off',
     "react/prop-types": 'off',

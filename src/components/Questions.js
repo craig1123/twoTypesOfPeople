@@ -7,11 +7,10 @@ import getContrast from './../utils/getContrast';
 import firebase from './../firebase.js';
 import repeatArray from './../utils/repeatArray';
 import Item from './Item';
+import Stats from './Stats';
 
 export default class Questions extends Component {
-  state = {
-    choices: 0, optionIndex: 0, opt: '', sideEl: null,
-  }
+  state = { choices: 0, toggleStats: false }
 
   componentDidMount() {
     window.addEventListener('keydown', this.useArrows);
@@ -21,11 +20,11 @@ export default class Questions extends Component {
     window.removeEventListener('keydown', this.useArrows);
   }
 
-  getRefOne = (ref) => { this.one = ref; }
-  getRefTwo = (ref) => { this.two = ref; }
+  getLeftGate = (ref) => { this.leftGate = ref; }
+  getRightGate = (ref) => { this.rightGate = ref; }
 
   useArrows = (e) => {
-    const item = options[this.state.optionIndex];
+    const item = options[this.props.match.params.optionIndex];
     if (e.key === 'ArrowLeft') {
       this.selectItem('one', item[0])();
     } else if (e.key === 'ArrowRight') {
@@ -33,32 +32,14 @@ export default class Questions extends Component {
     }
   }
 
-  selectItem = (ref, opt) => () => {
-    const sideEl = this[ref];
-    let option;
-    if (ref === 'one') {
-      option = this.color.option1;
-      this.two.children[0].style.boxShadow = '';
-    } else {
-      option = this.color.option2;
-      this.one.children[0].style.boxShadow = '';
-    }
-    const color = getContrast(option) === '#ededed' ? '255,255,255' : '0,0,0';
-    sideEl.children[0].style.boxShadow = `0px 0px 10px 4px rgba(${color},0.9)`;
-    this.setState({ opt, sideEl });
-  }
-
-  handleNext = () => {
-    const { opt, sideEl } = this.state;
-    // sideEl.classList.add('big');
+  selectItem = opt => () => {
+    const { history, match } = this.props;
+    history.push(`/quiz/${parseInt(match.params.optionIndex, 10) + 1}`);
     this.recordItem(opt);
-    this.updateOptionIndex(sideEl);
-    this.two.children[0].style.boxShadow = '';
-    this.one.children[0].style.boxShadow = '';
   }
 
   recordItem = (option) => {
-    const itemRef = firebase.database().ref(`choices/${this.state.optionIndex}`);
+    const itemRef = firebase.database().ref(`choices/${this.props.match.params.optionIndex}`);
     itemRef.transaction((opts) => {
       const currentItem = opts || { option1: 0, option2: 0 };
       return {
@@ -69,16 +50,25 @@ export default class Questions extends Component {
     this.setState(prev => ({ choices: prev.choices + option }));
   }
 
-  updateOptionIndex = () => {
-    // setTimeout(() => {
-    // document.body.style.background = next;
-    // el.classList.remove('big');
-    this.setState(prev => ({ optionIndex: prev.optionIndex + 1, sideEl: null, opt: '' }));
-    // }, 500);
+  handleSeeStats = () => {
+    console.log(this.props.history);
+    if (this.state.toggleStats) {
+      this.leftGate.style.right = '';
+      this.leftGate.style.left = '';
+      this.rightGate.style.left = '';
+      this.rightGate.style.right = '';
+    } else {
+      this.leftGate.style.right = '100%';
+      this.leftGate.style.left = '-12.5%';
+      this.rightGate.style.left = '100%';
+      this.rightGate.style.right = '-12.5%';
+    }
+    this.setState(prev => ({ toggleStats: !prev.toggleStats }));
   }
 
   render() {
-    const { choices, optionIndex, sideEl } = this.state;
+    const { optionIndex } = this.props.match.params;
+    const { choices, toggleStats } = this.state;
     if (optionIndex > options.length - 1) {
       return <Results choices={choices} />;
     }
@@ -91,41 +81,40 @@ export default class Questions extends Component {
       <React.Fragment>
         <header>
           <Link to="/">
-            <h1 style={{ color: color1 }}>
-              Two Types of People
-            </h1>
+            <h1 style={{ color: color1 }}>Two Types of People</h1>
           </Link>
-          <button
-            className={`my-button next${color2}${sideEl ? '' : ' blocked'}`}
-            onClick={this.handleNext}
-          >
-            <span>Next </span>
-            <span className="hovering">&rarr;</span>
+          <button className={`my-button see-stats${color2}`} onClick={this.handleSeeStats}>
+            See Stats
           </button>
         </header>
         <section className="quiz-wrapper">
-          <Item
-            option={this.color.option1}
-            getRef={this.getRefOne}
-            item={item[0]}
-            color={color1 === '#ededed' ? ' white' : ''}
-            selectItem={this.selectItem}
-            number="one"
-          />
-          <div className="vertical-line" />
-          <Item
-            option={this.color.option2}
-            getRef={this.getRefTwo}
-            item={item[1]}
-            color={color2}
-            selectItem={this.selectItem}
-            number="two"
-            render={(
-              <button className={`my-button see-stats${color2}`}>
-                See Stats
-              </button>
-            )}
-          />
+          <div className="wrapper sliding-doors">
+            <div
+              ref={this.getLeftGate}
+              className="wrapper left-gate"
+              style={{ background: this.color.option1 }}
+            >
+              <Item
+                item={item[0]}
+                color={color1 === '#ededed' ? ' white' : ''}
+                selectItem={this.selectItem}
+              />
+            </div>
+            <div
+              ref={this.getRightGate}
+              className="wrapper right-gate"
+              style={{ background: this.color.option2 }}
+            >
+              <Item item={item[1]} color={color2} selectItem={this.selectItem} />
+            </div>
+            {toggleStats &&
+              <Stats
+                colors={[this.color.option1, this.color.option2]}
+                optionIndex={optionIndex}
+                handleSeeStats={this.handleSeeStats}
+              />
+            }
+          </div>
         </section>
       </React.Fragment>
     );

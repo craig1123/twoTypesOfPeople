@@ -1,14 +1,12 @@
 import React from 'react';
 
-const Item = ({
-  color, item, selectItem, getRef, option, render, number,
-}) => (
-  <div className="item-wrapper" style={{ background: option }}>
+const Item = ({ color, item, selectItem }) => (
+  <div className="item-wrapper wrapper">
     <div
-      role="presentation"
-      ref={getRef}
+      role="button"
+      tabIndex={0}
       className="item"
-      onClick={selectItem(number, item.points)}
+      onClick={selectItem(item.points)}
     >
       <img
         src={`${process.env.PUBLIC_URL}/img/${item.image}`}
@@ -17,7 +15,6 @@ const Item = ({
         className={color}
       />
     </div>
-    {render}
   </div>
 );
 

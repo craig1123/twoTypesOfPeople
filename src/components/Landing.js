@@ -43,15 +43,15 @@ export default class Landing extends Component {
   render() {
     return (
       <section className="landing-wrapper">
-        <h1>Two Types of People</h1>
+        {/* <h1>Two Types of People</h1>
         <p className="">
           There are many different types of people and personalities
           in this world. However, it's sometimes easiest to divide us
           into two specific groups. Find out your personality type as
           you take this simple and fun quiz.
-        </p>
+        </p> */}
         <div className="three-d" ref={(ref) => { this.three = ref; }}>
-          <Link to="/quiz" id="start-quiz" data-title="Take Quiz" />
+          <Link to="/quiz/0" id="start-quiz" data-title="Take Quiz" />
         </div>
       </section>
     );
