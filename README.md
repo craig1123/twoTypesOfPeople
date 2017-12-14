@@ -1,28 +1,34 @@
 # Two Types of People
 There are many different types of people and personalities in this world. However, it's sometimes easiest to divide us into two specific groups. Find out your personality type as you take this simple and fun quiz.
 
+Personalities are based off of the [Big Five personality traits]: https://en.wikipedia.org/wiki/Big_Five_personality_traits.
 
-## Features:
-### Choose between two pictures (ex. one alarm or many alarms).
-* Intro page
-* Picture page - two halves, different colors for each half (look at dropbox design for inspiration). 50 questions
-* Results page
+* Openness to experience (inventive/curious vs. consistent/cautious)
+* Conscientiousness (efficient/organized vs. easy-going/careless)
+* Extraversion (outgoing/energetic vs. solitary/reserved)
+* Agreeableness (friendly/compassionate vs. challenging/detached)
+* Neuroticism (sensitive/nervous vs. secure/confident)
 
---
-### Show the stats for what everyone has selected (using firebase).
-* Have a button that says: "Show all the stats" or just show a pie graph of the percentage after they click a picture?
 
---
-### After about 50 "questions", have a description about you.
-* When they select an option, they either get 1 or 2 points depending on what they selected. Add these points up at the end. Or have different "questions" represent different points.
-* A range of descriptions:
-  * 50 - 54
-  * 55 - 59
-  * 60 - 64
-  * 65 - 69
-  * 70 - 74
-  * 75 - 79
-  * 80 - 84
-  * 85 - 89
-  * 90 - 94
-  * 95 - 100
+
+---
+
+
+
+## ToDo:
+
+### Landing Page
+* Make the design appealing
+* Adequately explain what the test is
+* Go into the big 5 personalities BRIEFLY and explain that we'll find your level by picking between two items
+* Have them check if they're male or female, age group (0-17, 18-26, 27-35, 35-50, 51-64, 65+)
+
+### Questions Page
+* Collect all the options/pictures
+* Add in the gender and age group stats
+* Once all of the options are selected, send them to the results page
+
+### Results Page
+* Give them a graph of the BIG 5 with all their points added together
+* Write an accurate description of each of the big 5
+* Show stats of how everyone ranked, male and female, age group.

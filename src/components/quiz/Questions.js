@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import Link from 'react-router-dom/Link';
-import Results from './Results';
-import options from './../options';
-import colors from './../colors';
-import getContrast from './../utils/getContrast';
-import firebase from './../firebase.js';
-import repeatArray from './../utils/repeatArray';
+import options from './../../config/options';
+import colors from './../../config/colorOptions';
+import firebase from './../../config/firebase.js';
+import getContrast from './../../utils/getContrast';
+import repeatArray from './../../utils/repeatArray';
 import Item from './Item';
-import Stats from './Stats';
+import ItemStats from './ItemStats';
 
 export default class Questions extends Component {
   state = { choices: 0, toggleStats: false }
@@ -26,16 +25,24 @@ export default class Questions extends Component {
   useArrows = (e) => {
     const item = options[this.props.match.params.optionIndex];
     if (e.key === 'ArrowLeft') {
-      this.selectItem('one', item[0])();
+      this.selectItem(item[0])();
     } else if (e.key === 'ArrowRight') {
-      this.selectItem('two', item[1])();
+      this.selectItem(item[1])();
     }
   }
 
   selectItem = opt => () => {
     const { history, match } = this.props;
-    history.push(`/quiz/${parseInt(match.params.optionIndex, 10) + 1}`);
+    const { optionIndex } = match.params;
     this.recordItem(opt);
+
+    // TODO: Use setState here and then a redirect below so we can pass
+    // this.state.choices in the to={}
+    if (optionIndex > options.length - 1) {
+      history.push('/results');
+    } else {
+      history.push(`/quiz/${parseInt(optionIndex, 10) + 1}`);
+    }
   }
 
   recordItem = (option) => {
@@ -67,10 +74,7 @@ export default class Questions extends Component {
 
   render() {
     const { optionIndex } = this.props.match.params;
-    const { choices, toggleStats } = this.state;
-    if (optionIndex > options.length - 1) {
-      return <Results choices={choices} />;
-    }
+    const { toggleStats } = this.state;
     const item = options[optionIndex];
     const theColors = repeatArray(colors, options.length);
     this.color = theColors[optionIndex];
@@ -106,7 +110,7 @@ export default class Questions extends Component {
             <Item item={item[1]} color={color2} selectItem={this.selectItem} />
           </div>
           {toggleStats &&
-          <Stats
+          <ItemStats
             colors={[this.color.option1, this.color.option2]}
             optionIndex={optionIndex}
             handleSeeStats={this.handleSeeStats}

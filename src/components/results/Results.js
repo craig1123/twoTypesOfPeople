@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import firebase from './../firebase.js';
+import firebase from './../../config/firebase.js';
 
 export default class Results extends Component {
   getItems = () => {

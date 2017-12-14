@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Link from 'react-router-dom/Link';
-import firebase from './../firebase.js';
 
 export default class Landing extends Component {
   componentDidMount() {
@@ -30,15 +29,6 @@ export default class Landing extends Component {
       docStyle.setProperty('--tz', '-12px');
     };
   }
-
-  handleSubmit = () => {
-    const itemsRef = firebase.database().ref('items');
-    const item = {
-      title: this.state.currentItem,
-      user: this.state.username,
-    };
-    itemsRef.push(item);
-  };
 
   render() {
     return (

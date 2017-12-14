@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Switch from 'react-router-dom/Switch';
 import Route from 'react-router-dom/Route';
-import Questions from './components/Questions';
-import Landing from './components/Landing';
-import Results from './components/Results';
+import Questions from './components/quiz/Questions';
+import Landing from './components/landing/Landing';
+import Results from './components/results/Results';
 
 class App extends Component {
   componentDidMount() {

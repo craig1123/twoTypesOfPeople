@@ -1,16 +1,6 @@
-const blue = '#006cf4';
-const red = '#d9002b';
-const orange = '#ff522e';
-const white = '#d9d9d9';
-const green = '#a1d2a1';
-const yellow = '#ffd459';
-const purple = '#794bee';
-const salmon = '#ffafa6';
-const pink = '#dfcdbd';
-const lightBlue = '#b3d3e8';
-const black = '#000000';
-const mustard = '#ffca9e';
-const darkPurple = '#65082c';
+import {
+  blue, red, orange, white, green, yellow, purple, salmon, pink, lightBlue, black, mustard, darkPurple,
+} from './colorScheme';
 
 export default [
   {

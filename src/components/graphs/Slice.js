@@ -11,10 +11,6 @@ export default class Slice extends Component {
   state = { path: '', x: 0, y: 0 }
 
   componentDidMount() {
-    this.animate();
-  }
-
-  animate = () => {
     this.draw(0);
   }
 
