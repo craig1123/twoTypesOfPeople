@@ -8,12 +8,12 @@ const Item = ({ color, item, selectItem }) => (
       className="item"
       onClick={selectItem(item.points)}
     >
-      {/* <img
+      <img
         src={`${process.env.PUBLIC_URL}/img/${item.image}`}
         alt={item.alt}
         width="100%"
         className={color}
-      /> */}
+      />
     </div>
   </div>
 );

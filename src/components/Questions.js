@@ -51,7 +51,6 @@ export default class Questions extends Component {
   }
 
   handleSeeStats = () => {
-    console.log(this.props.history);
     if (this.state.toggleStats) {
       this.leftGate.style.right = '';
       this.leftGate.style.left = '';
@@ -81,10 +80,7 @@ export default class Questions extends Component {
       <React.Fragment>
         <header>
           <Link to="/">
-            <h1 style={{ color: color1 }}>
-              {/* Two Types of People */}
-              header
-            </h1>
+            <h1 style={{ color: color1 }}>Two Types of People</h1>
           </Link>
           <button className={`my-button see-stats${color2}`} onClick={this.handleSeeStats}>
             See Stats
