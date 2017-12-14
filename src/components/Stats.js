@@ -27,7 +27,6 @@ export default class Stats extends Component {
   render() {
     const { colors, handleSeeStats } = this.props;
     const { data } = this.state;
-    console.log('data', data);
     const sum = data.reduce((carry, current) => carry + current, 0);
     let startAngle = 0;
     return (

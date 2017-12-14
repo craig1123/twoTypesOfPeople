@@ -144,31 +144,27 @@ header {
 	transform-style: preserve-3d;
 	transform: perspective(800px);
 }
-.quiz-wrapper {
-  height: 100%;
-  width: 100%;
-}
 .sliding-doors {
   display: flex;
   justify-content: center;
   position: absolute;
-  position: relative;
-  z-index: 1;
+  top: 0;
+  width: 100%;
   overflow: hidden;
   box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
-.left-gate {
-  position: absolute;
-  bottom: 0; right: 50%; left: 0; top: 0;
+.gate {
+  position: relative;
+  width: 50%;
   transition: all 0.5s ease-out;
 }
+.left-gate {
+  right: 50%;
+  left: 0;
+}
 .right-gate {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  right: 0;
-  top: 0;
-  transition: all 0.5s ease-out;
+  left: 0;
+  right: 0
 }
 .item-wrapper {
   width: 100%;
@@ -189,9 +185,11 @@ header {
   box-shadow: 0px 0px 10px 4px rgba(255,255,255,0.6);
 }
 .stats-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 25%;
 }
 @media screen and (max-width: 785px) {
   header {
@@ -217,9 +215,18 @@ header {
     background-color:transparent;
     border-color:#585858 !important;
   }
-  .quiz-wrapper {
+  .sliding-doors {
     display: block;
     position: relative;
+  }
+  .gate {
+    width: 100%;
+  }
+  .left-gate {
+    right: 0;
+  }
+  .right-gate {
+    left: 0;
   }
   .item-wrapper {
     padding: 25px;
