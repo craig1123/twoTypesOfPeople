@@ -5,6 +5,7 @@ import colors from './../../config/colorOptions';
 import firebase from './../../config/firebase.js';
 import getContrast from './../../utils/getContrast';
 import repeatArray from './../../utils/repeatArray';
+import mobileWidth from './../../utils/mobileWidth';
 import Item from './Item';
 import ItemStats from './ItemStats';
 
@@ -34,10 +35,11 @@ export default class Questions extends Component {
   selectItem = opt => () => {
     const { history, match } = this.props;
     const { optionIndex } = match.params;
+    if (this.state.toggleStats) {
+      this.handleSeeStats();
+    }
     this.recordItem(opt);
 
-    // TODO: Use setState here and then a redirect below so we can pass
-    // this.state.choices in the to={}
     if (optionIndex > options.length - 1) {
       history.push('/results');
     } else {
@@ -59,15 +61,13 @@ export default class Questions extends Component {
 
   handleSeeStats = () => {
     if (this.state.toggleStats) {
-      this.leftGate.style.right = '';
       this.leftGate.style.left = '';
       this.rightGate.style.left = '';
-      this.rightGate.style.right = '';
+      document.body.overflow = '';
     } else {
-      this.leftGate.style.right = '25%';
-      this.leftGate.style.left = '-25%';
-      this.rightGate.style.left = '25%';
-      this.rightGate.style.right = '-25%';
+      this.leftGate.style.left = mobileWidth ? '-100%' : '-25%';
+      this.rightGate.style.left = mobileWidth ? '100%' : '25%';
+      document.body.overflow = 'hidden';
     }
     this.setState(prev => ({ toggleStats: !prev.toggleStats }));
   }
@@ -110,12 +110,12 @@ export default class Questions extends Component {
             <Item item={item[1]} color={color2} selectItem={this.selectItem} />
           </div>
           {toggleStats &&
-          <ItemStats
-            colors={[this.color.option1, this.color.option2]}
-            optionIndex={optionIndex}
-            handleSeeStats={this.handleSeeStats}
-          />
-            }
+            <ItemStats
+              colors={[this.color.option1, this.color.option2]}
+              optionIndex={optionIndex}
+              handleSeeStats={this.handleSeeStats}
+            />
+          }
         </section>
       </React.Fragment>
     );

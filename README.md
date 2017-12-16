@@ -1,7 +1,7 @@
 # Two Types of People
 There are many different types of people and personalities in this world. However, it's sometimes easiest to divide us into two specific groups. Find out your personality type as you take this simple and fun quiz.
 
-Personalities are based off of the [Big Five personality traits]: https://en.wikipedia.org/wiki/Big_Five_personality_traits.
+Personalities are based off of the [Big Five personality traits]: (https://en.wikipedia.org/wiki/Big_Five_personality_traits)
 
 * Openness to experience (inventive/curious vs. consistent/cautious)
 * Conscientiousness (efficient/organized vs. easy-going/careless)

@@ -1,5 +1,5 @@
 import {
-  blue, red, orange, white, green, yellow, purple, salmon, pink, lightBlue, black, mustard, darkPurple,
+  blue, red, orange, white, green, yellow, purple, salmon, pink, lightBlue, black, mustard, darkPurple, // eslint-disable-line
 } from './colorScheme';
 
 export default [
@@ -16,10 +16,6 @@ export default [
     option2: white,
   },
   {
-    option1: yellow,
-    option2: purple,
-  },
-  {
     option1: salmon,
     option2: blue,
   },
@@ -34,6 +30,10 @@ export default [
   {
     option1: darkPurple,
     option2: yellow,
+  },
+  {
+    option1: yellow,
+    option2: purple,
   },
   {
     option1: lightBlue,

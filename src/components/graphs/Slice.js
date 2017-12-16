@@ -14,6 +14,10 @@ export default class Slice extends Component {
     this.draw(0);
   }
 
+  componentWillReceiveProps() {
+    this.draw(100);
+  }
+
   draw = (initialAngle) => {
     const { angle, startAngle, radius } = this.props;
     const path = [];
