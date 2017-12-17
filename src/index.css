@@ -88,8 +88,7 @@ header {
   z-index: 5;
 }
 .landing-wrapper {
-  padding: 5% 10%;
-  text-align: center;
+  padding: 1em 5em;
 }
 #start-quiz {
 	position: relative;
@@ -108,7 +107,7 @@ header {
 	left: 0;
 	bottom: 0;
 	right: 0;
-	background: linear-gradient(135deg, #525252, #969696);
+	background: #0570cc;
 	border-radius: 4px;
 	transition: box-shadow .5s ease, transform .2s ease;
 	will-change: transform;
@@ -121,7 +120,7 @@ header {
 }
 #start-quiz:hover::before {
 	box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
-  /*background: linear-gradient(135deg, #000b70, #000aff);*/
+  background: #0466bb;
 }
 #start-quiz::after {
 	position: relative;
@@ -140,7 +139,7 @@ header {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 25vh;
+	height: 20vh;
 	transform-style: preserve-3d;
 	transform: perspective(800px);
 }
@@ -234,6 +233,9 @@ g:hover {
   header h1 {
     color: #585858 !important;
   }
+  .landing-wrapper {
+    padding: 1em 2em;
+  }
   .my-button.see-stats {
     color:#585858 !important;
     border-color: #585858 !important;
@@ -269,6 +271,9 @@ g:hover {
   }
   header h1 {
     font-size: 1.5em;
+  }
+  .landing-wrapper {
+    padding: 1em 1em;
   }
   .my-button {
     font-size: 12px;

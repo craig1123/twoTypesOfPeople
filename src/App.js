@@ -7,38 +7,56 @@ import Questions from './components/quiz/Questions';
 import PageShell from './components/PageShell';
 import Landing from './components/landing/Landing';
 import Results from './components/results/Results';
-// import firebase from './config/firebase.js';
+import firebase from './config/firebase.js';
 
 class App extends Component {
   componentDidMount() {
-    this.getAllChoices();
-    // this.getLocation();
+    const USState = localStorage.getItem('USState');
+    const gender = localStorage.getItem('gender');
+    const ageGroup = localStorage.getItem('ageGroup');
+    const localStates = [];
+    if (gender) {
+      localStates.push({ key: 'gender', value: gender });
+    }
+    if (ageGroup) {
+      localStates.push({ key: 'ageGroup', value: ageGroup });
+    }
+    if (USState) {
+      localStates.push({ key: 'USState', value: USState });
+    }
+    // else {
+    //   this.getLocation();
+    // }
+    // this.getAllChoices();
+    this.props.updateMultiple(localStates);
   }
 
   getAllChoices = () => {
-    // const itemsRef = firebase.database().ref('choices');
-    // itemsRef.on('value', (snapshot) => {
-    //   const items = snapshot.val();
-    //   console.log(items);
-    //   const newState = [];
-    //   for (const item in items) { // eslint-disable-line
-    //     newState.push(items[item]);
-    //   }
-    // });
+    const itemsRef = firebase.database().ref('choices');
+    itemsRef.on('value', (snapshot) => {
+      const items = snapshot.val();
+      const newItems = [];
+      for (const item in items) { // eslint-disable-line
+        newItems.push(items[item]);
+      }
+      this.props.updateState({ key: 'items', value: newItems });
+    });
   }
 
-  // getLocation = async () => {
-  //   await fetch('https://freegeoip.net/json/')
-  //     .then(response => response.json())
-  //     .then((location) => {
-  //       if (location.country_code === 'US' && location.region_name) {
-  //         // this.props.updateState({ key: 'USState', value: location.region_name });
-  //       }
-  //       if (location.country_name) {
-  //         // this.props.updateState({ key: 'country', value: location.country_name });
-  //       }
-  //     });
-  // }
+  getLocation = async () => {
+    await fetch('https://freegeoip.net/json/')
+      .then(response => response.json())
+      .then((location) => {
+        const locations = [];
+        if (location.country_code === 'US' && location.region_name) {
+          locations.push({ key: 'country', value: location.region_name });
+        }
+        if (location.country_name) {
+          locations.push({ key: 'country', value: location.country_name });
+        }
+        this.props.updateMultiple(locations);
+      });
+  }
 
   render() {
     return (
@@ -60,4 +78,6 @@ const mapDispatchToProps = dispatch => ({
   updateMultiple: changes => dispatch(updateMultiple(changes)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps, null, {
+  pure: false,
+})(App);

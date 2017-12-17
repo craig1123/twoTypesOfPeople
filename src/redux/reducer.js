@@ -4,12 +4,10 @@ export const types = {
 };
 
 export const initialState = {
-  user: {
-    country: '',
-    gender: '',
-    ageGroup: '',
-    USState: '',
-  },
+  country: '',
+  gender: '',
+  ageGroup: '',
+  USState: '',
   items: [
     { option1: 33, option2: 20 },
     { option1: 16, option2: 16 },
