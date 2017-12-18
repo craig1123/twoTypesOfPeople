@@ -20,7 +20,7 @@ Personalities are based off of the [Big Five personality traits]: (https://en.wi
 ### Landing Page
 * Make the design appealing
 * Adequately explain what the test is
-* Go into the big 5 personalities BRIEFLY and explain that we'll find your level by picking between two items
+* Go into the big 5 personalities BRIEFLY and explain that we'll find your personality by picking between two items
 * Have them check if they're male or female, age group (0-17, 18-26, 27-35, 35-50, 51-64, 65+)
 
 ### Questions Page

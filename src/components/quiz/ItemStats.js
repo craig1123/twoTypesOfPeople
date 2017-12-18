@@ -1,33 +1,18 @@
-import React, { Component } from 'react';
-import firebase from './../../config/firebase.js';
+import React from 'react';
+import { connect } from 'react-redux';
 import Pie from './../graphs/Pie';
+import objectToArray from './../../utils/objectToArray';
 
-export default class ItemStats extends Component {
-  state = { data: [] }
+const ItemStats = ({
+  colors, handleSeeStats, items, optionIndex,
+}) => (
+  <div className="stats-wrapper" onClick={handleSeeStats} role="button" tabIndex={0}>
+    <Pie data={objectToArray(items[optionIndex].total)} colors={colors} />
+  </div>
+);
 
-  componentDidMount() {
-    this.getItems();
-  }
+const mapStateToProps = state => ({
+  items: state.items,
+});
 
-  getItems = () => {
-    const itemsRef = firebase.database().ref(`choices/${this.props.optionIndex}`);
-    itemsRef.on('value', (snapshot) => {
-      const items = snapshot.val();
-      const newState = [];
-      for (const item in items) { // eslint-disable-line
-        newState.push(items[item]);
-      }
-      this.setState({ data: newState });
-    });
-  }
-
-  render() {
-    const { colors, handleSeeStats } = this.props;
-    const { data } = this.state;
-    return (
-      <div className="stats-wrapper" onClick={handleSeeStats} role="button" tabIndex={0}>
-        <Pie data={data} colors={colors} />
-      </div>
-    );
-  }
-}
+export default connect(mapStateToProps)(ItemStats);

@@ -57,7 +57,7 @@ const genderOptions = [
     ),
   },
 ];
-const ageGroupOptions = ['0-17', '18-26', '27-35', '35-50', '51-64', '65+'];
+const ageGroupOptions = ['0-17', '18-26', '27-35', '36-50', '51-64', '65+'];
 
 class Landing extends Component {
   componentDidMount() {
@@ -142,6 +142,4 @@ const mapDispatchToProps = dispatch => ({
   updateState: change => dispatch(updateState(change)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps, null, {
-  pure: false,
-})(Landing);
+export default connect(mapStateToProps, mapDispatchToProps)(Landing);

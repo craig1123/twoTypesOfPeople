@@ -4,7 +4,6 @@ import Route from 'react-router-dom/Route';
 import { connect } from 'react-redux';
 import { updateState, updateMultiple } from './redux/actions';
 import Questions from './components/quiz/Questions';
-import PageShell from './components/PageShell';
 import Landing from './components/landing/Landing';
 import Results from './components/results/Results';
 import firebase from './config/firebase.js';
@@ -35,11 +34,11 @@ class App extends Component {
     const itemsRef = firebase.database().ref('choices');
     itemsRef.on('value', (snapshot) => {
       const items = snapshot.val();
-      const newItems = [];
+      const allData = [];
       for (const item in items) { // eslint-disable-line
-        newItems.push(items[item]);
+        allData.push(items[item]);
       }
-      this.props.updateState({ key: 'items', value: newItems });
+      this.props.updateState({ key: 'allData', value: allData });
     });
   }
 
@@ -47,14 +46,10 @@ class App extends Component {
     await fetch('https://freegeoip.net/json/')
       .then(response => response.json())
       .then((location) => {
-        const locations = [];
         if (location.country_code === 'US' && location.region_name) {
-          locations.push({ key: 'country', value: location.region_name });
+          localStorage.setItem('USState', location.region_name);
+          this.props.updateState({ key: 'USState', value: location.region_name });
         }
-        if (location.country_name) {
-          locations.push({ key: 'country', value: location.country_name });
-        }
-        this.props.updateMultiple(locations);
       });
   }
 
@@ -62,15 +57,15 @@ class App extends Component {
     return (
       <Switch>
         <Route exact path="/quiz/:optionIndex" component={Questions} />
-        <Route exact path="/results" component={PageShell(Results)} />
-        <Route exact path="/" component={PageShell(Landing)} />
+        <Route exact path="/results" component={Results} />
+        <Route exact path="/" component={Landing} />
       </Switch>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  items: state.items,
+  allData: state.allData,
 });
 
 const mapDispatchToProps = dispatch => ({

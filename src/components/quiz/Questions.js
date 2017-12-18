@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Link from 'react-router-dom/Link';
+import { connect } from 'react-redux';
+import { updateState, updateMultiple } from './../../redux/actions';
 import options from './../../config/options';
 import colors from './../../config/colorOptions';
 import firebase from './../../config/firebase.js';
@@ -9,8 +11,8 @@ import mobileWidth from './../../utils/mobileWidth';
 import Item from './Item';
 import ItemStats from './ItemStats';
 
-export default class Questions extends Component {
-  state = { choices: 0, toggleStats: false }
+class Questions extends Component {
+  state = { toggleStats: false }
 
   componentDidMount() {
     window.addEventListener('keydown', this.useArrows);
@@ -48,15 +50,34 @@ export default class Questions extends Component {
   }
 
   recordItem = (option) => {
+    const {
+      gender, ageGroup, USState, choices,
+    } = this.props;
     const itemRef = firebase.database().ref(`choices/${this.props.match.params.optionIndex}`);
-    itemRef.transaction((opts) => {
-      const currentItem = opts || { option1: 0, option2: 0 };
-      return {
-        option1: option === 1 ? (currentItem.option1 || 0) + 1 : currentItem.option1,
-        option2: option === 2 ? (currentItem.option2 || 0) + 1 : currentItem.option2,
+    itemRef.transaction((o) => {
+      const opts = o || {};
+      const dataStructure = {
+        total: opts.total || { option1: 0, option2: 0 },
+        gender: opts.gender || {},
+        ageGroup: opts.ageGroup || {},
+        USState: opts.USState || {},
       };
+      dataStructure.total = this.addOneToOptions(option, dataStructure.total);
+      dataStructure.gender[gender] = this.addOneToOptions(option, dataStructure.gender[gender]);
+      dataStructure.ageGroup[ageGroup] = this.addOneToOptions(option, dataStructure.ageGroup[ageGroup]); // eslint-disable-line
+      dataStructure.USState[USState] = this.addOneToOptions(option, dataStructure.USState[USState]);
+      return dataStructure;
     });
-    this.setState(prev => ({ choices: prev.choices + option }));
+    const newChoices = [...choices, option];
+    this.props.updateState({ key: 'choices', value: newChoices });
+  }
+
+  addOneToOptions = (option, choices) => {
+    const currentItem = choices || { option1: 0, option2: 0 };
+    return {
+      option1: option === 1 ? (currentItem.option1 || 0) + 1 : currentItem.option1,
+      option2: option === 2 ? (currentItem.option2 || 0) + 1 : currentItem.option2,
+    };
   }
 
   handleSeeStats = () => {
@@ -81,13 +102,13 @@ export default class Questions extends Component {
     const color1 = getContrast(this.color.option1);
     const color2 = getContrast(this.color.option2) === '#ededed' ? ' white' : '';
     return (
-      <React.Fragment>
+      <Fragment>
         <header>
           <Link to="/">
             <h1 style={{ color: color1 }}>Two Types of People</h1>
           </Link>
           <button className={`my-button see-stats${color2}`} onClick={this.handleSeeStats}>
-            See Stats
+            {toggleStats ? 'Hide' : 'Show'} Stats
           </button>
         </header>
         <section className="wrapper sliding-doors">
@@ -117,7 +138,20 @@ export default class Questions extends Component {
             />
           }
         </section>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
+const mapStateToProps = state => ({
+  choices: state.choices,
+  gender: state.gender,
+  ageGroup: state.ageGroup,
+  USState: state.USState,
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateState: change => dispatch(updateState(change)),
+  updateMultiple: changes => dispatch(updateMultiple(changes)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Questions);
