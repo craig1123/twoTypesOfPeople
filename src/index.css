@@ -182,6 +182,7 @@ header {
 .item img.white:hover {
   box-shadow: 0px 0px 10px 4px rgba(255,255,255,0.6);
 }
+/* stats */
 g:hover {
   /* amimate the hover to make it look cool */
 }
@@ -191,6 +192,29 @@ g:hover {
   align-items: center;
   position: absolute;
   top: 25%;
+}
+.bar-chart {
+  background-size: 30px 30px;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 58px 20px 20px;
+  width: 100%;
+}
+.bar-chart__label {
+  fill: rgb( 55, 55, 55 );
+  font-size: 18px;
+}
+.bar-chart__bar {
+  fill: rgb( 90, 175, 65 );
+}
+.bar-chart__value {
+  fill: rgb( 55, 55, 55 );
+  font-size: 30px;
+  font-weight: bold;
+}
+.bar-chart__value[text-anchor=end] {
+  fill: rgb( 255, 255, 255 );
+  text-shadow: 0 -2px 0 rgb( 30, 60, 22 );
 }
 
 /* animations */

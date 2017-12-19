@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateState, updateMultiple } from './../../redux/actions';
 import firebase from './../../config/firebase.js';
+import BarChart from './../graphs/BarChart';
 
 class Results extends Component {
   componentDidMount() {
-    this.getAllChoices();
+    // this.getAllChoices();
   }
 
   getAllChoices = () => {
@@ -28,6 +29,20 @@ class Results extends Component {
           <h1 className="">Test</h1>
         </div>
         {choices}
+        <BarChart
+          bars={[
+            { label: 'travel', value: 11 },
+            { label: 'accomodation', value: 27 },
+            { label: 'food', value: 4 },
+            { label: 'drink', value: 19 },
+            { label: 'tourism', value: 10 },
+          ]}
+          labelWidth={135}
+          preserveAspectRatio="xMinYMid meet"
+          formatValue={v => `$${v.toFixed(2)}`}
+          height={400}
+          width={600}
+        />
       </section>
     );
   }
