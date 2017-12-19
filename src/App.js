@@ -6,6 +6,7 @@ import { updateState, updateMultiple } from './redux/actions';
 import Questions from './components/quiz/Questions';
 import Landing from './components/landing/Landing';
 import Results from './components/results/Results';
+import FourOFour from './components/FourOFour';
 import firebase from './config/firebase.js';
 
 class App extends Component {
@@ -59,6 +60,7 @@ class App extends Component {
         <Route exact path="/quiz/:optionIndex" component={Questions} />
         <Route exact path="/results" component={Results} />
         <Route exact path="/" component={Landing} />
+        <Route component={FourOFour} />
       </Switch>
     );
   }
