@@ -10,10 +10,14 @@ Personalities are based off of the [Big Five personality traits]: (https://en.wi
 * Neuroticism (sensitive/nervous vs. secure/confident)
 
 
-
 ---
 
+## Get Started
 
+* `yarn build` This will create a 'dist' folder containing js and css folders/files as well as an index.html that you can use to test these scripts locally.
+* `yarn start` This will start a local development server on port 3000.
+
+---
 
 ## ToDo:
 
