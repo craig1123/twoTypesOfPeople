@@ -14,6 +14,8 @@ class App extends Component {
     const USState = localStorage.getItem('USState');
     const gender = localStorage.getItem('gender');
     const ageGroup = localStorage.getItem('ageGroup');
+    const choices = localStorage.getItem('choices');
+    const optionIndex = localStorage.getItem('optionIndex');
     const localStates = [];
     if (gender) {
       localStates.push({ key: 'gender', value: gender });
@@ -23,6 +25,12 @@ class App extends Component {
     }
     if (USState) {
       localStates.push({ key: 'USState', value: USState });
+    }
+    if (choices) {
+      localStates.push({ key: 'choices', value: choices });
+    }
+    if (optionIndex) {
+      localStates.push({ key: 'optionIndex', value: optionIndex });
     }
     // else {
     //   this.getLocation();

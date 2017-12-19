@@ -4,10 +4,10 @@ import Pie from './../graphs/Pie';
 import objectToArray from './../../utils/objectToArray';
 
 const ItemStats = ({
-  colors, handleSeeStats, items, optionIndex,
+  colors, handleSeeStats, allData, optionIndex,
 }) => (
   <div className="stats-wrapper" onClick={handleSeeStats} role="button" tabIndex={0}>
-    <Pie data={objectToArray(items[optionIndex].total)} colors={colors} />
+    <Pie data={objectToArray(allData[optionIndex].total)} colors={colors} />
   </div>
 );
 

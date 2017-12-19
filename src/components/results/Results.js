@@ -24,12 +24,10 @@ class Results extends Component {
     const { choices } = this.props;
     return (
       <section>
-        <div style={styles.container}>
-          <div style={styles.header}>
-            <h1>Points</h1>
-            {choices}
-          </div>
+        <div style={styles.header}>
+          <h1 className="">Test</h1>
         </div>
+        {choices}
       </section>
     );
   }
@@ -48,17 +46,11 @@ const mapDispatchToProps = dispatch => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Results);
 
 const styles = {
-  container: {
-    display: 'flex',
-  },
   header: {
     listStyleType: 'none',
     textAlign: 'center',
     fontSize: '25px',
     width: '100%',
     marginRight: '100px',
-  },
-  item: {
-    listStyleType: 'none',
   },
 };

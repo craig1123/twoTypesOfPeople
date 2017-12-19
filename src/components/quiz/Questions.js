@@ -27,33 +27,32 @@ class Questions extends Component {
 
   useArrows = (e) => {
     const item = options[this.props.match.params.optionIndex];
-    if (e.key === 'ArrowLeft') {
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowTop') {
       this.selectItem(item[0])();
-    } else if (e.key === 'ArrowRight') {
+    } else if (e.key === 'ArrowRight' || e.key === 'ArrowBottom') {
       this.selectItem(item[1])();
     }
   }
 
   selectItem = opt => () => {
     const { history, match } = this.props;
-    const { optionIndex } = match.params;
+    const nextIndex = parseInt(match.params.optionIndex, 10) + 1;
     if (this.state.toggleStats) {
       this.handleSeeStats();
     }
     this.recordItem(opt);
-
-    if (optionIndex > options.length - 1) {
+    if (nextIndex > options.length - 1) {
       history.push('/results');
     } else {
-      history.push(`/quiz/${parseInt(optionIndex, 10) + 1}`);
+      history.push(`/quiz/${nextIndex}`);
     }
   }
 
   recordItem = (option) => {
     const {
-      gender, ageGroup, USState, choices,
+      gender, ageGroup, USState, choices, match,
     } = this.props;
-    const itemRef = firebase.database().ref(`choices/${this.props.match.params.optionIndex}`);
+    const itemRef = firebase.database().ref(`choices/${match.params.optionIndex}`);
     itemRef.transaction((o) => {
       const opts = o || {};
       const dataStructure = {
@@ -70,6 +69,8 @@ class Questions extends Component {
     });
     const newChoices = [...choices, option];
     this.props.updateState({ key: 'choices', value: newChoices });
+    localStorage.setItem('choices', newChoices);
+    localStorage.setItem('optionIndex', parseInt(match.params.optionIndex, 10) + 1);
   }
 
   addOneToOptions = (option, choices) => {
@@ -135,6 +136,7 @@ class Questions extends Component {
               colors={[this.color.option1, this.color.option2]}
               optionIndex={optionIndex}
               handleSeeStats={this.handleSeeStats}
+              allData={this.props.allData}
             />
           }
         </section>
@@ -147,6 +149,7 @@ const mapStateToProps = state => ({
   gender: state.gender,
   ageGroup: state.ageGroup,
   USState: state.USState,
+  allData: state.allData,
 });
 
 const mapDispatchToProps = dispatch => ({

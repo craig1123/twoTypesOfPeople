@@ -8,8 +8,8 @@ export default class FourOFour extends Component {
       <div>
         <h1>Two Types of People</h1>
 
-        This Page does not exist
-        But the Konami code does...
+        <p>There are only two options... and you managed to pick the third</p>
+
       </div>
     );
   }
