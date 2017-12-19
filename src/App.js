@@ -8,6 +8,7 @@ import Landing from './components/landing/Landing';
 import Results from './components/results/Results';
 import FourOFour from './components/FourOFour';
 import firebase from './config/firebase.js';
+import objectToArray from './utils/objectToArray.js';
 
 class App extends Component {
   componentDidMount() {
@@ -42,11 +43,7 @@ class App extends Component {
   getAllChoices = () => {
     const itemsRef = firebase.database().ref('choices');
     itemsRef.on('value', (snapshot) => {
-      const items = snapshot.val();
-      const allData = [];
-      for (const item in items) { // eslint-disable-line
-        allData.push(items[item]);
-      }
+      const allData = objectToArray(snapshot.val());
       this.props.updateState({ key: 'allData', value: allData });
     });
   }

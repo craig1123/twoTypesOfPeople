@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { Chart } from 'react-google-charts';
 import { connect } from 'react-redux';
 import { updateState, updateMultiple } from './../../redux/actions';
 import firebase from './../../config/firebase.js';
+import objectToArray from './../../utils/objectToArray.js';
+import mobileWidth from './../../utils/mobileWidth.js';
 import BarChart from './../graphs/BarChart';
 
 class Results extends Component {
@@ -12,11 +15,7 @@ class Results extends Component {
   getAllChoices = () => {
     const itemsRef = firebase.database().ref('choices');
     itemsRef.on('value', (snapshot) => {
-      const items = snapshot.val();
-      const allData = [];
-      for (const item in items) { // eslint-disable-line
-        allData.push(items[item]);
-      }
+      const allData = objectToArray(snapshot.val());
       this.props.updateState({ key: 'allData', value: allData });
     });
   }
@@ -40,8 +39,34 @@ class Results extends Component {
           labelWidth={135}
           preserveAspectRatio="xMinYMid meet"
           formatValue={v => `$${v.toFixed(2)}`}
-          height={400}
-          width={600}
+          height={mobileWidth ? 400 : 300}
+          width={mobileWidth ? 900 : 1600}
+        />
+        <Chart
+          chartType="PieChart"
+          data={[['Task', 'Hours per Day'], ['Work', 11], ['Eat', 2], ['Commute', 2], ['Watch TV', 2], ['Sleep', 7]]}
+          options={{ title: 'My Daily Activities', pieHole: 0.4, is3D: true }}
+          height="400px"
+        />
+        <Chart
+          chartType="ColumnChart"
+          data={[['Task', 'Hours per Day'], ['Work', 11], ['Eat', 2], ['Commute', 2], ['Watch TV', 2], ['Sleep', 7]]}
+          options={{
+            title: 'Motivation and Energy Level Throughout the Day',
+            hAxis: {
+              title: 'Time of Day',
+              format: 'h:mm a',
+              viewWindow: {
+                min: [7, 30, 0],
+                max: [17, 30, 0],
+              },
+            },
+            vAxis: {
+              title: 'Rating (scale of 1-10)',
+            },
+          }}
+          width="50%"
+          height="400px"
         />
       </section>
     );

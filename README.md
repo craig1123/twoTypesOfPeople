@@ -12,18 +12,21 @@ Personalities are based off of the [Big Five personality traits](https://en.wiki
 
 
 
-## Get Started
+## Getting Started
 
-* `yarn` will install all the dependencies
-* `yarn build` This will create a 'dist' folder containing js and css folders/files as well as an index.html that you can use to test these scripts locally.
+* `yarn` to install all the dependencies
+* `yarn build` This will create a 'build' folder containing JS and CSS bundled files.
 * `yarn start` This will start a local development server on port 3000.
 
-We are using `firebase` for the database which stores gender, ageGroup, US state, and the options people have selected. You will need to make a `keys.js` file in the `config` folder and contact Craig Walker for the secrets.
-`localStorage` is used to save people's session and where they're at in the quiz/if they've already taken it.
-`Redux` for state management of the current session.
-`React` for the javascript/UI framework.
-`React-router` for the routing
+### The Tech
 
+We are using `firebase` for the database which stores gender, ageGroup, US state, and the options people have selected. You will need to make a `keys.js` file in the `config` folder and contact Craig Walker for the secrets.
+
+`localStorage` is used to save people's session and where they're at in the quiz/if they've already taken it.
+
+`React/Redux/React-router` for UI, state management and routing
+
+This is a Progressive web app and registers a service-worker 
 
 
 ## ToDo:

@@ -10,22 +10,22 @@ const Pie = ({ colors, data }) => {
   return (
     <svg width={diameter} height={diameter} viewBox={`0 0 ${diameter} ${diameter}`} xmlns="http://www.w3.org/2000/svg" version="1.1">
       {data.map((slice, sliceIndex) => {
-            const nextAngle = startAngle;
-            const angle = (slice / sum) * 360;
-            const percent = (slice / sum) * 100;
-            startAngle += angle;
-            return (
-              <Slice
-                key={sliceIndex}
-                value={slice}
-                percentValue={percent.toFixed(1)}
-                startAngle={nextAngle}
-                angle={angle}
-                radius={radius}
-                fill={colors[sliceIndex % colors.length]}
-              />
-            );
-          })}
+        const nextAngle = startAngle;
+        const angle = (slice / sum) * 360;
+        const percent = (slice / sum) * 100;
+        startAngle += angle;
+        return (
+          <Slice
+            key={sliceIndex}
+            value={slice}
+            percentValue={percent.toFixed(1)}
+            startAngle={nextAngle}
+            angle={angle}
+            radius={radius}
+            fill={colors[sliceIndex % colors.length]}
+          />
+        );
+      })}
     </svg>
   );
 };
