@@ -26,7 +26,7 @@ We are using `firebase` for the database which stores gender, ageGroup, US state
 
 `React/Redux/React-router` for UI, state management and routing
 
-This is a Progressive web app and registers a service-worker 
+This is a Progressive web app and registers a service-worker
 
 
 ## ToDo:
@@ -51,7 +51,7 @@ This is a Progressive web app and registers a service-worker
 * Mobile Responsiveness
 
 ### Miscellaneous
-* Contact Jorge to use his images
+* Contact Joao Rocha to use his images
 
 <p align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Yin_yang.svg/200px-Yin_yang.svg.png">

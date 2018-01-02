@@ -41,12 +41,12 @@ const genderOptions = [
     ),
   },
   {
-    name: 'I prefer not to say',
+    name: 'Other',
     svg: (
       <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <title>Icon I prefer not to say</title>
+        <title>Icon Other</title>
         <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-          <g id="nope" stroke="#00171F" strokeWidth="2">
+          <g id="other" stroke="#00171F" strokeWidth="2">
             <path d="M50,89 C28.4608948,89 11,71.5391052 11,50 C11,28.702089 28.8012779,11 50,11 C71.3811739,11 89,28.8647602 89,50 C89,71.5391052 71.5391052,89 50,89 Z" id="Oval" />
             <path d="M34.5,59 C32.0147186,59 30,56.9852814 30,54.5 C30,53.1996039 30.5532818,51.9907899 31.5049437,51.1414086 C32.3241732,50.4102265 33.3788668,50 34.5,50 C36.9852814,50 39,52.0147186 39,54.5 C39,56.9852814 36.9852814,59 34.5,59 Z" id="eye" />
             <path d="M65,59 C62.790861,59 61,57.209139 61,55 C61,53.844 61.4917357,52.7696523 62.3377558,52.0145589 C63.0660084,51.3645758 64.0033341,51 65,51 C67.209139,51 69,52.790861 69,55 C69,57.209139 67.209139,59 65,59 Z" id="eye" />
@@ -61,7 +61,7 @@ const ageGroupOptions = ['0-17', '18-26', '27-35', '36-50', '51-64', '65+'];
 
 class Landing extends Component {
   componentDidMount() {
-    const docStyle = this.three.style;
+    const threeStyle = this.three.style;
     const aElem = document.getElementById('start-quiz');
     const boundingClientRect = aElem.getBoundingClientRect();
 
@@ -72,19 +72,19 @@ class Landing extends Component {
       const yc = boundingClientRect.height / 2;
       const dx = (x - xc) / 2;
       const dy = (y - yc) * -1.5;
-      docStyle.setProperty('--rx', `${dy}deg`);
-      docStyle.setProperty('--ry', `${dx}deg`);
+      threeStyle.setProperty('--rx', `${dy}deg`);
+      threeStyle.setProperty('--ry', `${dx}deg`);
     };
     aElem.onmouseleave = () => {
-      docStyle.setProperty('--ty', '0');
-      docStyle.setProperty('--rx', '0');
-      docStyle.setProperty('--ry', '0');
+      threeStyle.setProperty('--ty', '0');
+      threeStyle.setProperty('--rx', '0');
+      threeStyle.setProperty('--ry', '0');
     };
     aElem.onmousedown = () => {
-      docStyle.setProperty('--tz', '-25px');
+      threeStyle.setProperty('--tz', '-25px');
     };
     this.three.onmouseup = () => {
-      docStyle.setProperty('--tz', '-12px');
+      threeStyle.setProperty('--tz', '-12px');
     };
   }
 
@@ -126,7 +126,7 @@ class Landing extends Component {
           />
         </form>
         <div className="three-d" ref={(ref) => { this.three = ref; }}>
-          <Link to="/quiz/0" id="start-quiz" data-title="Take Quiz" />
+          <Link to={`/quiz/${this.props.optionIndex || 0}`} id="start-quiz" data-title="Take Quiz" />
         </div>
       </section>
     );
@@ -136,6 +136,7 @@ class Landing extends Component {
 const mapStateToProps = state => ({
   gender: state.gender,
   ageGroup: state.ageGroup,
+  optionIndex: state.optionIndex,
 });
 
 const mapDispatchToProps = dispatch => ({

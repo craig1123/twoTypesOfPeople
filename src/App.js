@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import Switch from 'react-router-dom/Switch';
-import Route from 'react-router-dom/Route';
 import { connect } from 'react-redux';
 import { updateState, updateMultiple } from './redux/actions';
-import Questions from './components/quiz/Questions';
-import Landing from './components/landing/Landing';
-import Results from './components/results/Results';
-import FourOFour from './components/FourOFour';
+import Router from './components/Router';
 import firebase from './config/firebase.js';
 import objectToArray from './utils/objectToArray.js';
 
@@ -24,14 +19,14 @@ class App extends Component {
     if (ageGroup) {
       localStates.push({ key: 'ageGroup', value: ageGroup });
     }
-    if (USState) {
-      localStates.push({ key: 'USState', value: USState });
-    }
     if (choices) {
       localStates.push({ key: 'choices', value: choices });
     }
     if (optionIndex) {
       localStates.push({ key: 'optionIndex', value: optionIndex });
+    }
+    if (USState) {
+      localStates.push({ key: 'USState', value: USState });
     }
     // else {
     //   this.getLocation();
@@ -61,12 +56,7 @@ class App extends Component {
 
   render() {
     return (
-      <Switch>
-        <Route exact path="/quiz/:optionIndex" component={Questions} />
-        <Route exact path="/results" component={Results} />
-        <Route exact path="/" component={Landing} />
-        <Route component={FourOFour} />
-      </Switch>
+      <Router />
     );
   }
 }
