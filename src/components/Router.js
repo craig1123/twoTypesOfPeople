@@ -1,12 +1,43 @@
 import React from 'react';
 import Switch from 'react-router-dom/Switch';
 import Route from 'react-router-dom/Route';
-import AsyncComponent from './AsyncComponent';
+import Loadable from 'react-loadable';
 
-const AsyncQuestions = AsyncComponent(() => import('./quiz/Questions'));
-const AsyncLanding = AsyncComponent(() => import('./landing/Landing'));
-const AsyncResults = AsyncComponent(() => import('./results/Results'));
-const AsyncFourOFour = AsyncComponent(() => import('./FourOFour'));
+const MyLoadingComponent = (props) => {
+  if (props.error) {
+    return <AsyncFourOFour />;
+  } else if (props.timedOut) {
+    return <div>Slow Connection detected. Try refreshing your page</div>;
+  } else if (props.pastDelay) {
+    return <div />;
+  }
+  return null;
+};
+
+const AsyncQuestions = Loadable({
+  loader: () => import('./quiz/Questions'),
+  loading: MyLoadingComponent,
+  timeout: 12000, // 12 seconds
+  delay: 50,
+});
+const AsyncLanding = Loadable({
+  loader: () => import('./landing/Landing'),
+  loading: MyLoadingComponent,
+  timeout: 12000, // 12 seconds
+  delay: 50,
+});
+const AsyncResults = Loadable({
+  loader: () => import('./results/Results'),
+  loading: MyLoadingComponent,
+  timeout: 12000, // 12 seconds
+  delay: 50,
+});
+const AsyncFourOFour = Loadable({
+  loader: () => import('./FourOFour'),
+  loading: MyLoadingComponent,
+  timeout: 12000, // 12 seconds
+  delay: 50,
+});
 
 const Router = () => (
   <Switch>
