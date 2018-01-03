@@ -182,6 +182,26 @@ header {
 .item img.white:hover {
   box-shadow: 0px 0px 10px 4px rgba(255,255,255,0.6);
 }
+.four-o-four {
+  padding: 40px 10px 0;
+  text-align: center;
+}
+.four-o-four-text {
+  filter: url(#filter);
+  fill: black;
+    font-family: 'Share Tech Mono';
+    font-size: 57px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.four-svg {
+  width: 475px;
+  height: 120px;
+  display: block;
+  position: relative;
+  background: #faf9f9;
+  margin: auto;
+}
 /* stats */
 g:hover {
   /* amimate the hover to make it look cool */

@@ -7,7 +7,7 @@ const MyLoadingComponent = (props) => {
   if (props.error) {
     return <AsyncFourOFour />;
   } else if (props.timedOut) {
-    return <div>Slow Connection detected. Try refreshing your page</div>;
+    return <AsyncFourOFour message="Slow Connection detected. Try refreshing your page" />;
   } else if (props.pastDelay) {
     return <div />;
   }
