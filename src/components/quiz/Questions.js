@@ -10,6 +10,8 @@ import repeatArray from './../../utils/repeatArray';
 import mobileWidth from './../../utils/mobileWidth';
 import Item from './Item';
 import ItemStats from './ItemStats';
+import ProgressBar from './ProgressBar';
+import './questions.css';
 
 class Questions extends Component {
   state = { toggleStats: false }
@@ -100,13 +102,15 @@ class Questions extends Component {
     const item = options[optionIndex];
     const theColors = repeatArray(colors, options.length);
     this.color = theColors[optionIndex];
-    const color1 = getContrast(this.color.option1);
-    const color2 = getContrast(this.color.option2) === '#ededed' ? ' white' : '';
+    const { option1, option2 } = this.color;
+    const color1 = getContrast(option1) === '#ededed' ? ' white' : '';
+    const color2 = getContrast(option2) === '#ededed' ? ' white' : '';
+    const completed = (parseInt(optionIndex, 10) / options.length) * 100;
     return (
       <Fragment>
         <header>
           <Link to="/">
-            <h1 style={{ color: color1 }}>Two Types of People</h1>
+            <h1 style={{ color: getContrast(option1) }}>Two Types of People</h1>
           </Link>
           <button className={`my-button see-stats${color2}`} onClick={this.handleSeeStats}>
             {toggleStats ? 'Hide' : 'Show'} Stats
@@ -116,29 +120,26 @@ class Questions extends Component {
           <div
             ref={this.getLeftGate}
             className="left-gate gate"
-            style={{ background: this.color.option1 }}
+            style={{ background: option1 }}
           >
-            <Item
-              item={item[0]}
-              color={color1 === '#ededed' ? ' white' : ''}
-              selectItem={this.selectItem}
-            />
+            <Item item={item[0]} color={color1} selectItem={this.selectItem} />
           </div>
           <div
             ref={this.getRightGate}
             className="right-gate gate"
-            style={{ background: this.color.option2 }}
+            style={{ background: option2 }}
           >
             <Item item={item[1]} color={color2} selectItem={this.selectItem} />
           </div>
           {toggleStats &&
             <ItemStats
-              colors={[this.color.option1, this.color.option2]}
+              colors={[option1, option2]}
               optionIndex={optionIndex}
               handleSeeStats={this.handleSeeStats}
               allData={this.props.allData}
             />
           }
+          <ProgressBar color1={option1} color2={option2} completed={completed} />
         </section>
       </Fragment>
     );
