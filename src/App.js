@@ -20,7 +20,8 @@ class App extends Component {
       localStates.push({ key: 'ageGroup', value: ageGroup });
     }
     if (choices) {
-      localStates.push({ key: 'choices', value: choices });
+      console.log(JSON.parse(choices));
+      localStates.push({ key: 'choices', value: JSON.parse(choices) });
     }
     if (optionIndex) {
       localStates.push({ key: 'optionIndex', value: optionIndex });

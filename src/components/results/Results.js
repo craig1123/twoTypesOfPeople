@@ -32,26 +32,18 @@ const data = [
 ];
 
 const radarData = [
-  {
-    subject: 'Math', A: 120, fullMark: 150,
-  },
-  {
-    subject: 'English', A: 86, fullMark: 150,
-  },
-  {
-    subject: 'Reading', A: 55, fullMark: 150,
-  },
-  {
-    subject: 'Geography', A: 99, fullMark: 150,
-  },
-  {
-    subject: 'Physics', A: 85, fullMark: 150,
-  },
-];
+  { subject: 'Math', A: 120, fullMark: 150 },
+  { subject: 'English', A: 86, fullMark: 150 },
+  { subject: 'Reading', A: 55, fullMark: 150 },
+  { subject: 'Geography', A: 99, fullMark: 150 },
+  { subject: 'Physics', A: 85, fullMark: 150 }];
 
 
-const data01 = [{ name: 'Group A', value: 400 }, { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 }, { name: 'Group D', value: 200 },
+const data01 = [
+  { name: 'Group A', value: 400 },
+  { name: 'Group B', value: 300 },
+  { name: 'Group C', value: 300 },
+  { name: 'Group D', value: 200 },
   { name: 'Group E', value: 278 }];
 
 const myColors = [lightBlue, orange, green, purple, yellow];

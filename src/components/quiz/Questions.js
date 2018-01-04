@@ -71,7 +71,7 @@ class Questions extends Component {
     });
     const newChoices = [...choices, option];
     this.props.updateState({ key: 'choices', value: newChoices });
-    localStorage.setItem('choices', newChoices);
+    localStorage.setItem('choices', JSON.stringify(newChoices));
     localStorage.setItem('optionIndex', parseInt(match.params.optionIndex, 10) + 1);
   }
 
