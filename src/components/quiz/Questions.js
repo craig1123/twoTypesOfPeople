@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import Link from 'react-router-dom/Link';
 import { connect } from 'react-redux';
 import { updateState, updateMultiple } from './../../redux/actions';
@@ -107,7 +107,7 @@ class Questions extends Component {
     const color2 = getContrast(option2) === '#ededed' ? ' white' : '';
     const completed = (parseInt(optionIndex, 10) / options.length) * 100;
     return (
-      <Fragment>
+      <section className="questions-wrapper">
         <header>
           <Link to="/">
             <h1 style={{ color: getContrast(option1) }}>Two Types of People</h1>
@@ -116,7 +116,7 @@ class Questions extends Component {
             {toggleStats ? 'Hide' : 'Show'} Stats
           </button>
         </header>
-        <section className="wrapper sliding-doors">
+        <div className="wrapper sliding-doors">
           <div
             ref={this.getLeftGate}
             className="left-gate gate"
@@ -140,8 +140,8 @@ class Questions extends Component {
             />
           }
           <ProgressBar color1={option1} color2={option2} completed={completed} />
-        </section>
-      </Fragment>
+        </div>
+      </section>
     );
   }
 }

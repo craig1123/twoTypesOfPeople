@@ -7,6 +7,22 @@ import objectToArray from './utils/objectToArray.js';
 
 class App extends Component {
   componentDidMount() {
+    const localStates = this.getLocalStates();
+    this.props.updateMultiple(localStates);
+    // this.getAllChoices;
+  }
+
+  getAllChoices = () => {
+    const itemsRef = firebase.database().ref('choices');
+    itemsRef.on('value', (snapshot) => {
+      const allData = objectToArray(snapshot.val());
+      const localStates = this.getLocalStates();
+      const multipleStates = [...localStates, { key: 'allData', value: allData }];
+      this.props.updateMultiple(multipleStates);
+    });
+  }
+
+  getLocalStates = () => {
     const USState = localStorage.getItem('USState');
     const gender = localStorage.getItem('gender');
     const ageGroup = localStorage.getItem('ageGroup');
@@ -20,7 +36,6 @@ class App extends Component {
       localStates.push({ key: 'ageGroup', value: ageGroup });
     }
     if (choices) {
-      console.log(JSON.parse(choices));
       localStates.push({ key: 'choices', value: JSON.parse(choices) });
     }
     if (optionIndex) {
@@ -32,16 +47,7 @@ class App extends Component {
     // else {
     //   this.getLocation();
     // }
-    // this.getAllChoices();
-    this.props.updateMultiple(localStates);
-  }
-
-  getAllChoices = () => {
-    const itemsRef = firebase.database().ref('choices');
-    itemsRef.on('value', (snapshot) => {
-      const allData = objectToArray(snapshot.val());
-      this.props.updateState({ key: 'allData', value: allData });
-    });
+    return localStates;
   }
 
   getLocation = async () => {

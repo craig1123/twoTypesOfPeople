@@ -49,6 +49,11 @@ const data01 = [
 const myColors = [lightBlue, orange, green, purple, yellow];
 
 class Results extends Component {
+  constructor(props) {
+    super(props);
+    const score = props.choices.reduce((a, b) => a + b, 0);
+    this.state = { score };
+  }
   componentDidMount() {
     // this.getAllChoices();
   }
@@ -62,13 +67,13 @@ class Results extends Component {
   }
 
   render() {
-    // const { choices } = this.props;
+    const { score } = this.state;
     return (
       <section>
         <div style={styles.header}>
           <h1 className="">Results</h1>
         </div>
-        {/* {choices} */}
+        <h2>Your score: {score}</h2>
         <BarChart
           width={mobileWidth ? 400 : 600}
           height={350}

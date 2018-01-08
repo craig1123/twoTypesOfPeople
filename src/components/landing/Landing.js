@@ -21,6 +21,13 @@ class Landing extends Component {
           into two specific groups. Find out your personality type as
           you take this simple and fun quiz.
         </p>
+        <p>
+          Portuguese art director Joao Rocha has created a fun
+          <a href="http://2kindsofpeople.tumblr.com/" target="_blank" rel="noopener noreferrer"> series </a>
+          of minimalist illustrations that classifies people into two broad groups based
+          on their daily habits and preferences.
+        </p>
+
         <Form />
         <StartButton startLink={startLink} optionIndex={optionIndex} />
       </section>

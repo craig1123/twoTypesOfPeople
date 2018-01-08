@@ -36,11 +36,10 @@ This is a Progressive web app and registers a service-worker
 * Adequately explain what the test is
 * Go into the big 5 personalities BRIEFLY and explain that we'll find your personality by picking between two items
 * Have them check if they're male or female, age group (0-17, 18-26, 27-35, 35-50, 51-64, 65+)
-* If they're in the process of taking the test, make sure the button says, 'Continue Test' and send them to the correct question. If they've finished the test, send them to the results page.
 * Mobile Responsiveness
 
 ### Questions Page
-* Collect all the options/pictures
+* Collect all the options/pictures (site the author)
 * Add more charts/ItemStats
 * Mobile Responsiveness for stats
 
@@ -50,8 +49,6 @@ This is a Progressive web app and registers a service-worker
 * Show stats of how everyone ranked, male and female, age group.
 * Mobile Responsiveness
 
-### Miscellaneous
-* Contact Joao Rocha to use his images
 
 <p align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Yin_yang.svg/200px-Yin_yang.svg.png">
