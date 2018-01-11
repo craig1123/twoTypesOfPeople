@@ -7,11 +7,16 @@ import Form from './Form';
 import './landing.css';
 
 class Landing extends Component {
-  state = {}
+  constructor(props) {
+    super(props);
+    console.log(props);
+    let startLink = `/quiz/${props.optionIndex}`;
+    startLink = props.optionIndex < options.length ? startLink : '/results';
+    this.state = { startLink };
+  }
+
   render() {
-    const optionIndex = this.props.optionIndex || 0;
-    let startLink = `/quiz/${optionIndex}`;
-    startLink = optionIndex < options.length ? startLink : '/results';
+    const { startLink } = this.state;
     return (
       <section className="landing-wrapper">
         <h1>Two Types of People</h1>
@@ -29,7 +34,7 @@ class Landing extends Component {
         </p>
 
         <Form />
-        <StartButton startLink={startLink} optionIndex={optionIndex} />
+        <StartButton startLink={startLink} optionIndex={this.props.optionIndex} />
       </section>
     );
   }

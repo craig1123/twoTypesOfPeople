@@ -17,6 +17,12 @@ class Questions extends Component {
   state = { toggleStats: false }
 
   componentDidMount() {
+    const { history, optionIndex, match } = this.props;
+    if (optionIndex >= options.length) {
+      history.push('/results');
+    } else if (match.params.optionIndex !== optionIndex) {
+      history.push(`/quiz/${optionIndex}`);
+    }
     window.addEventListener('keydown', this.useArrows);
   }
 
@@ -28,7 +34,7 @@ class Questions extends Component {
   getRightGate = (ref) => { this.rightGate = ref; }
 
   useArrows = (e) => {
-    const item = options[this.props.match.params.optionIndex];
+    const item = options[this.props.optionIndex];
     if (e.key === 'ArrowLeft' || e.key === 'ArrowTop') {
       this.selectItem(item[0])();
     } else if (e.key === 'ArrowRight' || e.key === 'ArrowBottom') {
@@ -37,12 +43,12 @@ class Questions extends Component {
   }
 
   selectItem = opt => () => {
-    const { history, match } = this.props;
-    const nextIndex = parseInt(match.params.optionIndex, 10) + 1;
+    const { history, optionIndex } = this.props;
+    const nextIndex = optionIndex + 1;
     if (this.state.toggleStats) {
       this.handleSeeStats();
     }
-    this.recordItem(opt);
+    this.recordItem(opt, nextIndex);
     if (nextIndex > options.length - 1) {
       history.push('/results');
     } else {
@@ -50,11 +56,11 @@ class Questions extends Component {
     }
   }
 
-  recordItem = (option) => {
+  recordItem = (option, nextIndex) => {
     const {
-      gender, ageGroup, USState, choices, match,
+      gender, ageGroup, USState, choices, optionIndex,
     } = this.props;
-    const itemRef = firebase.database().ref(`choices/${match.params.optionIndex}`);
+    const itemRef = firebase.database().ref(`choices/${optionIndex}`);
     itemRef.transaction((o) => {
       const opts = o || {};
       const dataStructure = {
@@ -71,8 +77,9 @@ class Questions extends Component {
     });
     const newChoices = [...choices, option];
     this.props.updateState({ key: 'choices', value: newChoices });
+    this.props.updateState({ key: 'optionIndex', value: nextIndex });
     localStorage.setItem('choices', JSON.stringify(newChoices));
-    localStorage.setItem('optionIndex', parseInt(match.params.optionIndex, 10) + 1);
+    localStorage.setItem('optionIndex', nextIndex);
   }
 
   addOneToOptions = (option, choices) => {
@@ -97,7 +104,7 @@ class Questions extends Component {
   }
 
   render() {
-    const { optionIndex } = this.props.match.params;
+    const { optionIndex } = this.props;
     const { toggleStats } = this.state;
     const item = options[optionIndex];
     const theColors = repeatArray(colors, options.length);
@@ -147,6 +154,7 @@ class Questions extends Component {
 }
 const mapStateToProps = state => ({
   choices: state.choices,
+  optionIndex: state.optionIndex,
   gender: state.gender,
   ageGroup: state.ageGroup,
   USState: state.USState,
