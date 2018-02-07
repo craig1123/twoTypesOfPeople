@@ -8,6 +8,7 @@
     <meta name="keywords" content="two types of people, two kinds of people, personality test, psychology quiz, compatibility, tautology">
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <title>There are two types of people - fun psychology personality test</title>
     <style>
     html,body,div,a,img,header{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}
@@ -15,7 +16,7 @@
       margin: 0;
       padding: 0;
       line-height:1;
-      font-family: sans-serif;
+      font-family: Catamaran, Helvetica,Arial,sans-serif
       color: #525252;
       position: relative;
       background: #faf9f9;
@@ -28,8 +29,16 @@
       text-decoration: none;
       color: inherit;
     }
+    h1 {
+      font-size: 50px;
+    }
     button:focus {
       outline:0;
+    }
+    @media screen and (max-width: 785px) {
+      h1 {
+        font-size: 36px;
+      }
     }
     </style>
   </head>

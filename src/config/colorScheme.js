@@ -1,10 +1,10 @@
 export const blue = '#006cf4';
-export const red = '#d9002b';
+export const red = '#dc2430';
 export const orange = '#ff522e';
 export const white = '#d9d9d9';
 export const green = '#a1d2a1';
 export const yellow = '#ffd459';
-export const purple = '#794bee';
+export const purple = '#7b4397';
 export const salmon = '#ffafa6';
 export const pink = '#dfcdbd';
 export const lightBlue = '#b3d3e8';

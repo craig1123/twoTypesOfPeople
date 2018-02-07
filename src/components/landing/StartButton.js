@@ -33,12 +33,19 @@ export default class StartButton extends PureComponent {
   threeRef = (ref) => { this.three = ref; }
 
   render() {
-    const { startLink, optionIndex } = this.props;
+    const {
+      startLink, optionIndex, gender, ageGroup,
+    } = this.props;
     let title = `${optionIndex === 0 ? 'Start' : 'Continue'} Quiz`;
     title = startLink === '/results' ? 'See Results' : title;
     return (
       <div className="three-d" ref={this.threeRef}>
-        <Link to={startLink} id="start-quiz" data-title={title} />
+        <Link
+          style={!gender || !ageGroup ? { pointerEvents: 'none', opacity: '.7' } : null}
+          to={startLink}
+          id="start-quiz"
+          data-title={title}
+        />
       </div>
     );
   }

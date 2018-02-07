@@ -4,6 +4,7 @@ export default {
   USState: 'California',
   choices: [],
   optionIndex: 0,
+  appLoading: true,
   allData: [
     {
       USState: {

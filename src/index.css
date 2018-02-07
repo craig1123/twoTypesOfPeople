@@ -7,6 +7,12 @@ header {
   position: relative;
   z-index: 5;
 }
+.yellow {
+  color: #fdcc52;
+}
+.flex-wrapper {
+  display: flex;
+}
 .four-o-four {
   padding: 40px 10px 0;
   text-align: center;
@@ -26,6 +32,30 @@ header {
   position: relative;
   background: #faf9f9;
   margin: auto;
+}
+.loading-bar {
+  height: 7px;
+  width: 0%;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  position: absolute;
+  top: 50%;
+  box-shadow: inset 0 -2px 4px rgba(0,0,0,0.4), 0 2px 5px 0px rgba(0,0,0,0.3);
+  transition: all 1s ease;
+  background: linear-gradient(to left,#794bee,#d9002b);
+}
+.loading-bottom, .loading-top {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  background-color: #fff;
+  transition: all 1s ease-out;
+}
+.loading-top {
+  top: 50%;
+}
+.loading-bottom {
+  bottom: 50%;
 }
 
 @media screen and (max-width: 785px) {
