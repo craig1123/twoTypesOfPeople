@@ -20,8 +20,8 @@ header {
 .four-o-four-text {
   filter: url(#filter);
   fill: black;
-    font-family: 'Share Tech Mono';
-    font-size: 57px;
+  font-family: 'Share Tech Mono';
+  font-size: 57px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -41,8 +41,8 @@ header {
   position: absolute;
   top: 50%;
   box-shadow: inset 0 -2px 4px rgba(0,0,0,0.4), 0 2px 5px 0px rgba(0,0,0,0.3);
-  transition: all 1s ease;
-  background: linear-gradient(to left,#794bee,#d9002b);
+  transition: all 1.2s ease;
+  background: linear-gradient(to left,#7b4397,#dc2430);
 }
 .loading-bottom, .loading-top {
   position: absolute;
@@ -57,6 +57,7 @@ header {
 .loading-bottom {
   bottom: 50%;
 }
+
 
 @media screen and (max-width: 785px) {
   header {

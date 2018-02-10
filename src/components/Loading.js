@@ -9,11 +9,11 @@ export default class Loading extends PureComponent {
 
     mount = () => {
       this.setState({ mounted: true });
-      setTimeout(() => { this.expand(); }, 1000);
+      setTimeout(() => { this.expand(); }, 1200);
     }
     expand = () => {
       this.setState({ expand: true });
-      setTimeout(() => { this.props.endLoading(); }, 1000);
+      setTimeout(() => { this.props.endLoading(); }, 1200);
     }
 
     render() {

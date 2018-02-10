@@ -1,15 +1,20 @@
 .landing-wrapper {
   position: relative;
-  /* padding: 150px 5em 100px; */
-  padding: 1em 5em 100px;
   color: white;
-  background: url("./../../img/bg-pattern.png"), #7b4397;
-  background: url("./../../img/bg-pattern.png"), -webkit-linear-gradient(to left, #7b4397, #dc2430);
-  background: url("./../../img/bg-pattern.png"), linear-gradient(to left, #7b4397, #dc2430);
+  background: -webkit-linear-gradient(to left, #7b4397, #dc2430);
+  background: linear-gradient(to left, #7b4397, #dc2430);
+}
+.another-wrapper {
+  height: 100%;
+  padding: 1em 5em 100px;
+  opacity: 0;
+  transition: opacity 1.5s ease-in;
+  background: url("./../../img/bg-pattern.png");
 }
 .landing-wrapper p {
   font-size: 30px;
   letter-spacing: 1px;
+  line-height: 1.5;
 }
 .landing-form {
   border: 3px solid #ccc;
@@ -150,13 +155,13 @@ input[type="radio"]:checked ~ label {
 }
 
 @media screen and (max-width: 785px) {
-  .landing-wrapper {
+  .another-wrapper {
     padding: 1em 2em;
   }
 }
 
 @media screen and (max-width: 515px) {
-  .landing-wrapper {
+  .another-wrapper {
     padding: 1em 1em;
   }
   .landing-form {
